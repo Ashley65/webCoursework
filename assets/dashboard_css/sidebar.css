@@ -1,0 +1,96 @@
+.menu-btn {
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--color-White);
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+aside{
+    height: 100vh;
+}
+aside .toggle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+aside .toggle .logo{
+    display: flex;
+    gap: 0.5rem;
+}
+aside .toggle .logo img{
+    width: 8rem;
+    height: 4rem;
+    object-fit: fill;
+}
+
+
+aside .sidebar{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--color-White);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    border-radius: 20px;
+    height: 84vh;
+    top: 1.5rem;
+    transition: all 0.5s ease;
+}
+aside .sidebar:hover{
+    box-shadow: none;
+}
+aside .sidebar a{
+    display: flex;
+    height: 3.7rem;
+    align-items: center;
+    padding: 0 2rem;
+    color: var(--color-dark);
+    position: relative;
+    margin-left: 1rem;
+    transition: all 0.5s ease;
+    gap: 1rem;
+}
+
+aside .sidebar a span{
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+aside .sidebar a:last-child{
+    position: absolute;
+    bottom: 2rem;
+}
+aside .sidebar a:hover{
+    background-color: var(--color-light);
+    border-radius: 2rem;
+}
+aside .sidebar a:hover span{
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+}
+aside .sidebar a.active{
+    width: 100%;
+    background-color: var(--color-light);
+
+    color: var(--primary-color);
+    margin-left: 0;
+
+}
+aside .sidebar a.active span{
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+}
+aside .sidebar a.active::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0.5rem;
+    background-color: var(--primary-color);
+}

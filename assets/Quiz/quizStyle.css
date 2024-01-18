@@ -1,0 +1,24 @@
+.tabs{
+   border: #0c7db1 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #0c7db1;
+    color: white;
+
+}
+
+.navTabs>li{
+    color: white;
+    float: left;
+    margin-bottom: -1px;
+}
+.navTabs>li{
+    position: relative;
+    display: block;
+}
+li.active{
+    background-color: white;
+    color: #0c7db1;
+}
+

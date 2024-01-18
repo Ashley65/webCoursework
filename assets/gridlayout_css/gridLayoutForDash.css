@@ -1,0 +1,82 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.3fr 2.6fr 0.2fr;
+    gap : 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar footer footer";
+}
+
+.aside{
+    grid-area: sidebar;
+
+}
+.Top-bar{
+    grid-area: header;
+
+}
+.main{
+    display: grid;
+    grid-template-columns: 1.4fr 0.2fr 1.4fr;
+    grid-template-rows: 0.3fr 0.9fr 1.8fr;
+    gap: 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "header header header"
+    "course-Details course-Details course-Details"
+    "student-calendar . student-message";
+    grid-area: main;
+
+}
+.footer{
+    grid-area: footer;
+}
+.header{
+    grid-area: header;
+}
+.course-Details{
+    grid-area: course-Details;
+}
+.student-calendar{
+    grid-area: student-calendar;
+}
+.student-message{
+    grid-area: student-message;
+}
+
+@media screen and (max-width: 1200px){
+    .container{
+        display: grid;
+        grid-template-columns: 0.3fr 2.6fr 0.1fr;
+        grid-template-rows: 0.3fr 2.8fr 0.1fr;
+        gap: 1px 1px;
+        grid-template-areas:
+        "sidebar header header"
+        "sidebar main main"
+        "sidebar footer footer";
+        grid-area: container;
+    }
+    .aside{
+        grid-area: sidebar;
+    }
+    .Top-bar{
+        grid-area: header;
+    }
+    .main{
+        display: grid;
+        grid-template-columns: 1.1fr 0.1fr 2.4fr;
+        grid-template-rows: 0.3fr 2.7fr 0.1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+        "header header header"
+        "side-profile . main-profile"
+        ". . .";
+        grid-area: main;
+    }
+
+
+
+}
