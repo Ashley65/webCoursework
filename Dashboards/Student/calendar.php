@@ -1,211 +1,138 @@
-<?php
-include_once "connection.php";
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../script.js"></script>
+    <script src="../../calendar.js"></script>
+    <link rel="stylesheet" href="../../assets/dashboard_css/calendar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForDash.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
 
-if(isset($_POST['func']) && !empty($_POST['func'])){
-    switch($_POST['func']){
-        case 'getCalender':
-            getCalender($_POST['year'],$_POST['month']);
-            break;
-        case 'getEvents':
-            getEvents($_POST['date']);
-            break;
-        default:
-            break;
-    }
-}
+    <aside class="aside">
+        <div class="toggle">
+            <div class="logo">
+                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
+                <h2><span class="blue">Ace</span>Training</h2>
 
-function getCalender($year = '', $month = ''){
-    $dateYear = ($year != '')?$year:date("Y");
-    $dateMonth = ($month != '')?$month:date("m");
-    $date = $dateYear.'-'.$dateMonth.'-01';
-    $currentMonthFirstDay = date("N",strtotime($date));
-    $totalDaysOfMonth = cal_days_in_month(CAL_GREGORIAN,$dateMonth,$dateYear);
-    $totalDaysOfMonthDisplay = ($currentMonthFirstDay == 7)?($totalDaysOfMonth):($totalDaysOfMonth + $currentMonthFirstDay);
-    $boxDisplay = ($totalDaysOfMonthDisplay <= 35)?35:42;
-
-    $prevMonth = date("m", strtotime('-1 month', strtotime($date)));
-    $prevYear = date("Y", strtotime('-1 month', strtotime($date)));
-    $nextMonth = date("m", strtotime('+1 month', strtotime($date)));
-    $nextYear = date("Y", strtotime('+1 month', strtotime($date)));
-    $currentMonth = date("m",strtotime($date));
-    $currentYear = date("Y",strtotime($date));
-    $currentDate = date("d",strtotime($date));
-
-    $totalDaysOfMonth_prev = cal_days_in_month(CAL_GREGORIAN,$prevMonth,$dateYear);
-
-    ?>
-
-    <main class="calender_contain">
-        <section class="title_bar">
-            <a href="javascript:void(0);" class="titleBar_prev" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">
-
-            </a>
-            <div class="titleBarMonth">
-                <select class="month_dropdown">
-                    <?php echo getMonthList($dateMonth);?>
-                </select>
             </div>
-            <div class="titleBarYear">
-                <select class="year_dropdown">
-                    <?php echo getYearList($dateYear);?>
-                </select>
-            </div>
-            <a href="javascript:void(0);" class="title-bar__next" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">
-                <button class="titleBar_next">
-                    <span class="material-symbols-outlined">arrow_right_alt</span>
-                </button>
+            <button class="menu-btn" id="toggleBtn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <div class="sidebar">
+            <a href="StudentMain.php" >
+                <span class="material-symbols-outlined">home</span>
+                <h3>Home</h3>
             </a>
+            <a href="dashboard.php">
+                <span class="material-symbols-outlined">dashboard</span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="profile.php">
+                <span class="material-symbols-outlined">person</span>
+                <h3>Profile</h3>
+            </a>
+            <a href="course.php">
+                <span class="material-symbols-outlined">book</span>
+                <h3>Course</h3>
+            </a>
+            <a href="assignment.php">
+                <span class="material-symbols-outlined">assignment</span>
+                <h3>Assignment</h3>
+            </a>
+            <a href="timetable.php">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Timetable</h3>
+            </a>
+            <a href="calendar.php" class="active">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Calendar</h3>
+            </a>
+            <a href="../../LoginSystem/logout.php">
+                <span class="material-symbols-outlined">logout</span>
+                <h3>Logout</h3>
+            </a>
+        </div>
 
-        </section>
-        <aside class="calender_sidebar" id="event_list">
-            <?php echo getEvents(); ?>
-        </aside>
+    </aside>
+    <main class="main">
+        <div class="header">
+        </div>
+        <div class="course-Details">
 
-        <select class="calender_days">
-            <section class="calendar_topBar">
-                <span class="topBar_days">Mon</span>
-                <span class="topBar_days">Tue</span>
-                <span class="topBar_days">Wed</span>
-                <span class="topBar_days">Thu</span>
-                <span class="topBar_days">Fri</span>
-                <span class="topBar_days">Sat</span>
-                <span class="topBar_days">Sun</span>
-            </section>
-            <?php
-                $dayCount = 1;
-                $eventNum = 0;
-
-                echo '<section class="calendar_week">';
-                for($cb=1;$cb<=$boxDisplay;$cb++){
-                    if(($cb >= $currentMonthFirstDay ||$currentMonthFirstDay == 1) && $cb <=($totalDaysOfMonthDisplay)){
-
-                        //current date
-                        $currentDate =$dateYear. '-' .$dateMonth. '-'.$dayCount;
-
-                        // getting the number of events based on the current day
-                        global $conn;
-                        $result = $conn->query("SELECT title FROM events WHERE date ='".$currentDate."' AND status =1");
-
-                        $eventNum = $result->num_rows;
-
-                        // Define date cell
-                        if(strtotime($currentDate) == strtotime($date("Y-m-d"))){
-                            echo'
-                                <div class="calendar_day today" onclick="getEvents(\''.$currentDate.'\');">
-                                    <span class="calendar_date">'.$dayCount.'</span>
-                                    <span class="calendar_task calendar_task-today">'.$eventNum.' Events</span>
-                                </div>';
-                        }elseif($eventNum>0){
-                            echo'
-                                <div class="calendar_day event" onclick="getEvents(\''.$currentDate.'\');">
-                                    <span class="calendar_date">'.$dayCount.'</span>
-                                    <span class="calendar_task">'.$eventNum.' Events</span>
-                                </div>';
-                        }else{
-                            echo'
-                                <div class="calendar_day noEvent" onclick="getEvents(\''.$currentDate.'\');">
-                                    <span class="calendar_date">'.$dayCount.'</span>
-                                    <span class="calendar_task"></span>
-                                </div>';
-                        }
-                        $dayCount++;
-                    }else{
-                        if($cb < $currentMonthFirstDay){
-                            $inactiveDate = (($totalDaysOfMonth_prev - $currentMonthFirstDay)+1)+$cb;
-                            $inactiveLabel = 'expired';
-                        }else{
-                            $inactiveDate = $cb - $totalDaysOfMonthDisplay;
-                            $inactiveLabel = 'upcoming';
-                        }
-                        echo '
-                            <div class="calendar_day inactive">
-                                <span class="calendar_date">'.$inactiveDate.'</span>
-                                <span class="calendar_task">'.$inactiveLabel.'</span>
-                            </div>';
+        </div>
+        <div class="student-calendar " id="calendar_div">
 
 
-                    }
-                    echo ($cb%7 == 0 && $cb != $boxDisplay)?'</section><section class="calendar_week">':'';
+        </div>
+        <div class="student-message">
 
-                }
-                echo '</section>';
-            ?>
-            }
+        </div>
 
-            ?>
-        </select>
     </main>
-    <script>
-        function getCalendar(target_div,year,month){
-            $.ajax({
-                type:'POST',
-                url:'calendar.php',
-                data:'func=getCalender&year='+year+'&month='+month,
-                success:function(html){
-                    $('#'+target_div).html(html);
-                }
-            });
-        }
-
-        function getEvents(date){
-            $.ajax({
-                type:'POST',
-                url:'calendar.php',
-                data:'func=getEvents&date='+date,
-                success:function(html){
-                    $('#event_list').html(html);
-                }
-            });
-        }
-
-        $(document).ready(function(){
-            $('.month_dropdown').on('change',function(){
-                getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
-            });
-            $('.year_dropdown').on('change',function(){
-                getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
-            });
-        });
-    </script>
-    <?php
-}
-
-function getMonthList($selected = ''){
-    $options = '';
-    for($i=1;$i<=12;$i++){
-        $value = ($i < 10)?'0'.$i:$i;
-        $selectedOpt = ($value == $selected)?'selected':'';
-        $options .= '<option value="'.$value.'"'.$selectedOpt.'>'.date('F',strtotime('2019-'.$value.'-1')).'</option>';
-    }
-    return $options;
-}
-
-function getYearList($selected = ''){
-    $options = '';
-    for($i=2019;$i<=2025;$i++){
-        $selectedOpt = ($i == $selected)?'selected':'';
-        $options .= '<option value="'.$i.'"'.$selectedOpt.'>'.$i.'</option>';
-    }
-    return $options;
-}
-
-function getEvents($date = ''): void
-{
-    $eventListHTML = '';
-    $currentDate = ($date != '')?$date:date("Y-m-d");
-    // getting the number of events based on the current day
-    global $conn;
-    $result = $conn->query("SELECT title FROM events WHERE date ='".$currentDate."' AND status =1");
-    if($result->num_rows > 0){
-        $eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($currentDate)).'</h2>';
-        $eventListHTML .= '<ul>';
-        while($row = $result->fetch_assoc()){
-            $eventListHTML .= '<li>'.$row['title'].'</li>';
-        }
-        $eventListHTML .= '</ul>';
-    }
-    echo $eventListHTML;
-}
 
 
+    <div class="Top-bar">
+        <div class="nav">
+            <h2><span class="blue">Student</span> Dashboard</h2>
+            <button  id="toggleBtn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="toggleTheme" id="mode-toggle"></div>
+            <div class="profile">
+                <div class="info">
+                    <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
+                    <small class="textMuted">Student</small>
+                </div>
+                <div class="profile_pic">
+                    <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</div>
+
+<div class="calendar-full">
+    <div class="calendar-border">
+        <header>
+            <p class="current-date"></p>
+            <div class="icons">
+                <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                <span id="next" class="material-symbols-rounded">chevron_right</span>
+            </div>
+        </header>
+        <div class="calendar">
+            <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
+    </div>
+<!--    <div class="day-info-container">-->
+<!--        <p class="day-info"></p>-->
+<!--        <button type="button" onclick="addEvent()">Add Event</button>-->
+<!--    </div>-->
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

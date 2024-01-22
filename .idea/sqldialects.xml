@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/406104cc-629b-4022-b1a7-827f3b7cb6c7/console.sql" dialect="GenericSQL" />
-    <file url="file://$USER_HOME$/Dropbox/Web dev coursework/Student Dashboard/config.php" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/Dashboards/Student/dashboard.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/LoginSystem/RSValidate.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/LoginSystem/Validate.php" dialect="GenericSQL" />

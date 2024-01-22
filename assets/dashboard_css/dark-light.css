@@ -1,0 +1,41 @@
+.toggleTheme {
+    display: flex;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    background-color: var(--color-light);
+    border-radius: 100px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-right: 25px;
+}
+
+.toggleTheme:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toggleTheme:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/img/light.png');
+    background-size: contain;
+    border-radius: 50%;
+    transition: left 0.3s, background-image 0.3s;
+}
+
+.toggleTheme.active {
+    background-color: #313131;
+}
+
+.toggleTheme.active:before {
+    left: calc(100% - 25px);
+    background-image: url('../../assets/img/dark.png');
+}

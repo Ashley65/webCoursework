@@ -14,10 +14,8 @@
     --border-radius-1: 0.5rem;
     --border-radius-2: 1rem;
     --color-background: #f6f6f9;
-
     --card-padding: 2rem;
     --padding-1:1.5rem;
-
     --box-shadow: 0 1rem 2rem var(--color-light);
 
 }
@@ -29,8 +27,7 @@
     --color-light: rgba(0,0,0,0.1);
     --color-dark: #edefef;
     --color-dark-varient: #a3bdcc;
-    --box-shadow: 0 1rem 2rem var(--color-light);) ;
-
+    --box-shadow: 0 1rem 2rem var(--color-light);
 }
 
 .blue{
@@ -58,11 +55,23 @@ body{
     width: 100%;
     height: auto;
 }
+
+/*body.dark {*/
+/*    background-color: var(--color-dark);*/
+/*    color: var(--color-light);*/
+/*}*/
+
+/*.sidebar.dark {*/
+/*    background-color: var(--color-dark);*/
+
+/*}*/
+
 a{
     color: var(--color-dark);
     text-decoration: none;
     transition: all 0.5s ease;
 }
+
 img{
     max-width: 100%;
     height: auto;
@@ -88,15 +97,19 @@ small{
     font-size: 0.8rem;
     font-weight: 400;
 }
+
 p{
     color: var(--color-dark-varient);
 }
+
 b{
     color: var(--color-dark);
 }
+
 .textMuted{
     color: var(--color-info-dark);
 }
+
 .primaryColor{
     color: var(--primary-color);
 }

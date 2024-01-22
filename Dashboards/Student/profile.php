@@ -1,38 +1,38 @@
 <?php
 session_start();
-include "connection.php";
-global $conn;
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
-
-    exit;
-}
-
-//get the user personal details
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-}else{
-    echo "No data found with id:" . $_SESSION['id'];
-
-}
-// get the user address from the address table
-$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $userAddress = $result->fetch_assoc();
-}
-
-
-
-?>
+//include "connection.php";
+//global $conn;
+//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//    header("location: /aceTrain/LoginSystem/loginStudent.php");
+//
+//    exit;
+//}
+//
+////get the user personal details
+//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $user = $result->fetch_assoc();
+//}else{
+//    echo "No data found with id:" . $_SESSION['id'];
+//
+//}
+//// get the user address from the address table
+//$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $userAddress = $result->fetch_assoc();
+//}
+//
+//
+//
+//?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,8 @@ if ($result->num_rows > 0) {
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../script.js"></script>
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
@@ -56,10 +58,7 @@ if ($result->num_rows > 0) {
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
-            <div class="dark-mode">
-                <span class="material-symbols-outlined ">dark_mode</span>
-                <span class="material-symbols-outlined active">light_mode</span>
-            </div>
+            <div class="toggleTheme" id="mode-toggle"></div>
             <div class="profile">
                 <div class="info">
                     <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
