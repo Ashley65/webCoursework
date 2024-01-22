@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <meta name="description" content="Ace Training Student Dashboard ">
+    <meta name="author" content="Team Ace Training">
+
     <title>Student Dashboard</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script src="../../js/script.js"></script>
     <script src="../../js/calendar.js"></script>
     <script src="../../js/theme.js"></script>
@@ -13,7 +16,7 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForDash.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCalendar.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -61,23 +64,38 @@
                 <h3>Logout</h3>
             </a>
         </div>
-
     </aside>
-    <main class="main">
-        <div class="header">
-        </div>
-        <div class="course-Details">
+    <div class="main">
+        <div class="mainCalendar calendar-full">
+            <div class="calendar-border">
+                <header>
+                    <p class="current-date"></p>
+                    <div class="icons">
+                        <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                        <span id="next" class="material-symbols-rounded">chevron_right</span>
+                    </div>
+                </header>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="days"></ul>
+                </div>
+            </div>
+            <div class="day-info-container">
+                <p class="day-info"></p>
+                <button type="button" onclick="addEvent()">Add Event</button>
+            </div>
+        </div> <!-- This is where the calendar will be displayed -->
 
-        </div>
-        <div class="student-calendar " id="calendar_div">
-
-
-        </div>
-        <div class="student-message">
-
-        </div>
-
-    </main>
+        <div class="events"></div> <!-- This is where the events will be displayed -->
+    </div>
 
 
     <div class="Top-bar">
@@ -101,34 +119,6 @@
     </div>
     <div class="footer">
     </div>
-</div>
-
-<div class="calendar-full">
-    <div class="calendar-border">
-        <header>
-            <p class="current-date"></p>
-            <div class="icons">
-                <span id="prev" class="material-symbols-rounded">chevron_left</span>
-                <span id="next" class="material-symbols-rounded">chevron_right</span>
-            </div>
-        </header>
-        <div class="calendar">
-            <ul class="weeks">
-                <li>Sun</li>
-                <li>Mon</li>
-                <li>Tue</li>
-                <li>Wed</li>
-                <li>Thu</li>
-                <li>Fri</li>
-                <li>Sat</li>
-            </ul>
-            <ul class="days"></ul>
-        </div>
-    </div>
-<!--    <div class="day-info-container">-->
-<!--        <p class="day-info"></p>-->
-<!--        <button type="button" onclick="addEvent()">Add Event</button>-->
-<!--    </div>-->
 </div>
 
 <script src="index.js"></script>

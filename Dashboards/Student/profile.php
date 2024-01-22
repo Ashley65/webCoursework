@@ -1,38 +1,38 @@
 <?php
 session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//// get the user address from the address table
-//$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $userAddress = $result->fetch_assoc();
-//}
-//
-//
-//
-//?>
+include "connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+// get the user address from the address table
+$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $userAddress = $result->fetch_assoc();
+}
+
+
+
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -44,11 +44,13 @@ session_start();
     <script src="../../js/script.js"></script>
     <script src="../../js/theme.js"></script>
     <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
+
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Profile.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForProfile.css">
+    <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -130,6 +132,9 @@ session_start();
                     <h3></h3>
                     <h3><?php echo isset($user['phone']) ? $user['phone'] : '<div class="black-box"></div>'; ?></h3>
                     <h3><?php echo isset($userAddress['city']) ? $userAddress['city'] : '<div class="black-box"></div>'; ?> ,<?php echo isset($userAddress['country']) ? $userAddress['country'] : '<div class="black-box"></div>'; ?></h3>
+                    <h3><?php echo isset($userAddress['zip']) ? $userAddress['zip'] : '<div class="black-box"></div>'; ?></h3>
+
+
                 </div>
 
             </div>
@@ -138,21 +143,88 @@ session_start();
 
         <div class="mainProfile">
             <div class="tabSelection">
-                <button class="tabBtn" onclick="openPage(event , 'personal' )">Personal Details</button>
+                <button class="tabBtn" onclick="openPage(event , 'personal' )" id="defaultTab">Personal Details</button>
                 <button class="tabBtn" onclick="openPage(event , 'Security' )">Security</button>
                 <button class="tabBtn" onclick="openPage(event , 'address')"> Address</button>
             </div>
             <div class="tabsArea">
-                <div id="personal" class="tabContant">
+                <div id="personal" class="tabContent">
                     <div class="card-body">
                         <form id="formAccountSettings" method="GET" onsubmit="">
-                            <div class="row">
+                            <div class="form-row">
+                                <div class="form-group ">
+                                    <label for="inputFirstName">First name</label>
+                                    <input type="text" class="form-control" id="inputFirstName" placeholder="First name">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="inputLastName">Last name</label>
+                                    <input type="text" class="form-control" id="inputLastName" placeholder="Last name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmailAddress">Email address</label>
+                                <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email address">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPhone">Phone</label>
+                                <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+
 
                             <div class="ActionButton">
                                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                 <button type="reset" class="btn btn-label-secondary">Cancel</button>
                             </div>
-                            <input type="hidden"></form>
+                        </form>
+                    </div>
+                </div>
+                <div id="Security" class="tabContent">
+                    <div class="card-body">
+                        <form id="formAccountSetting" method="get" onsubmit="">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="ActionButton">
+                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="address" class="tabContent">
+                    <div class="card-body">
+                        <form id="formAccountSetting" method="get" onsubmit="">
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="inputCity">City</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPostcode">Post Code</label>
+                                    <input type="text" class="form-control" id="inputPostcode">
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
 

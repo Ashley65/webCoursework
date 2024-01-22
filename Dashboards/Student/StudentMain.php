@@ -85,7 +85,7 @@
 
         </aside>
         <main>
-            <h2><span class="blue">Student</span> Dashboard</h2>
+
 
 
         </main>
