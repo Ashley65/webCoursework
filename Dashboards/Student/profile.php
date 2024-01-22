@@ -41,7 +41,8 @@ session_start();
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../script.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/theme.js"></script>
     <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
@@ -65,7 +66,7 @@ session_start();
                     <small class="textMuted">Student</small>
                 </div>
                 <div class="profile_pic">
-                    <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
+                    <img src="../../assets/img/Default_pfp.png">
                 </div>
             </div>
         </div>
@@ -73,10 +74,7 @@ session_start();
     <aside class="aside">
         <div class="toggle">
             <div class="logo">
-
-                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
-                <h2><span class="blue">Ace</span>Training</h2>
-
+                <img src="../../assets/img/AceTraining-logo-light-transparent.png">
             </div>
             <button class="menu-btn" id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
@@ -125,7 +123,7 @@ session_start();
         <div class="sideProfile">
             <div class="main-side-profile">
                 <div class="profile-pic">
-                    <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
+                    <img src="../../assets/img/Default_pfp.png">
                 </div>
                 <div class="profileInfo">
                     <h2><?php echo $user['FName'] . " " . $user['LName']; ?></h2>

@@ -1,31 +1,3 @@
-function validateForm(){
-    var toCheck= document.getElementById().value;
-    var re = /^[a-zA-Z0-9]+$/;
-    if(!re.test(toCheck)){
-        alert("Error: Input contains invalid characters!");
-        return false;
-    }
-    return true;
-}
-
-function startTimer(){
-    setTimeout(countDown, 500)
-
-}
-
-function countDown(){
-    let timerText = document.getElementById('timertext');
-    timerText.style.display='block';
-    let currentTimer = timerText.innerHTML;
-    currentTimer = parseInt(currentTimer);
-    currentTimer --;
-    timerText.innerHTML = currentTimer;
-
-    setTimeout(countDown, 100)
-}
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     const toggleTheme = document.querySelector(".toggleTheme");
@@ -36,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
         body.classList.toggle("dark", isDark);
         toggleTheme.classList.toggle("active", isDark);
         document.body.classList.toggle('dark-mode-var');
+
+        if (isDark) {
+            document.querySelector('.logo img').src = '../../assets/img/AceTraining-logo-dark-transparent.png';
+        } else {
+            document.querySelector('.logo img').src = '../../assets/img/AceTraining-logo-light-transparent.png';
+        }
 
         localStorage.setItem("theme", isDark ? "dark" : "light");
     }

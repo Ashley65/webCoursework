@@ -29,7 +29,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/theme.js"></script>
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForDash.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
@@ -42,9 +45,7 @@
         <aside>
             <div class="toggle">
                 <div class="logo">
-                    <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
-                    <h2><span class="blue">Ace</span>Training</h2>
-
+                    <img src="../../assets/img/AceTraining-logo-light-transparent.png">
                 </div>
                 <button class="menu-btn" id="toggleBtn">
                     <span class="material-symbols-outlined">menu</span>
@@ -95,18 +96,14 @@
                 <button  id="toggleBtn">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
-                <div class="dark-mode">
-                    <span class="material-symbols-outlined ">dark_mode</span>
-                    <span class="material-symbols-outlined active">light_mode</span>
-                </div>
+                <div class="toggleTheme" id="mode-toggle"></div>
                 <div class="profile">
                     <div class="info">
                         <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
                         <small class="textMuted">Student</small>
                     </div>
                     <div class="profile_pic">
-                        <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg">
-
+                        <img src="../../assets/img/Default_pfp.png">
                     </div>
                 </div>
 
