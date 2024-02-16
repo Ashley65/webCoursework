@@ -232,6 +232,14 @@ if ($result->num_rows > 0) {
                                     <input type="text" class="form-control" id="inputPostcode">
                                 </div>
                             </div>
+                            <div class=" form-group">
+                                <label for="inputCountry">Country</label>
+                                <input type="text" class="form-control" id="inputCountry">
+                            </div>
+                            <div class="ActionButton">
+                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                            </div>
 
                         </form>
                     </div>

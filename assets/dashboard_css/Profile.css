@@ -89,32 +89,45 @@
     text-align: left;
     padding: 0 1rem;
 }
-.tabSelection{
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: var(--color-White);
-    border-radius: 5px;
-
+.tabSelection {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 0 1rem;
+    border: var(--color-dark) 1px solid;
+    background: var(--color-White);
+    -moz-border-radius-topleft: 20px;
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -webkit-border-top-right-radius: 20px;
 }
-.tabSelection button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: #0c7db1;
+.tabSelection .tabBtn {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+
+
+.tabSelection .tabBtn .name {
+    display: flex;
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
 }
 
-
-.tabSelection button:hover {
-    background-color: #ddd;
-}
-.tabSelection button.active {
-    background-color: #ccc;
+.tabSelection .tabBtn button:checked + .name {
+    background-color: #fff;
+    font-weight: 600;
 }
 
-.card-body{
+.card-body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -130,42 +143,51 @@
     -webkit-border-bottom-right-radius: 20px;
     box-shadow: var(--box-shadow);
     transition: all 0.5s ease;
-
 }
-
 .ActionButton button {
-    --c:  #229091; /* the color*/
+    position: relative;
+    width: 11rem;
+    height: 3rem;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    font-size: 1.2rem;
+    font-weight: 550;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    gap: 10px;
 
-    box-shadow: 0 0 0 .1em inset var(--c);
-    --g: linear-gradient(var(--c) 0 0) no-repeat;
-    background:
-            var(--g) calc(var(--_p,0%) - 100%) 0%,
-            var(--g) calc(200% - var(--_p,0%)) 0%,
-            var(--g) calc(var(--_p,0%) - 100%) 100%,
-            var(--g) calc(200% - var(--_p,0%)) 100%;
-    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
-    outline-offset: .1em;
-    transition: background-size .4s, background-position 0s .4s;
 }
 .ActionButton button:hover {
-    --_p: 100%;
-    transition: background-position .4s, background-size 0s;
-}
-.ActionButton button:active {
-    box-shadow: 0 0 0 .1em inset #fff;
-    background-color: var(--c);
-    color: #fff;
-}
-.ActionButton button{
-    background-color: #6767e6;
+    background: #315cfd;
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 1.3rem;
+
+}
+.ActionButton button:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: 3rem;
     width: 100%;
-    opacity: 0.9;
+    height: 100%;
+    padding: 2px;
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+    z-index: -1;
+}
+.ActionButton {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 0 1rem;
+    margin: 1rem 0;
 
 }
 
@@ -198,6 +220,13 @@
     opacity: 0.9;
     transition: all 0.5s ease;
 }
+.form-group input:focus {
+    border: 1px solid #0c7db1;
+    opacity: 1;
+    box-shadow: 0 0 10px #0c7db1;
+}
+
+
 
 
 
