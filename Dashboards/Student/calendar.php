@@ -18,9 +18,32 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCalendar.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
 </head>
 <body>
 <div class="container">
+    <div class="Top-bar">
+        <div class="nav">
+            <h2><span class="blue">Student</span> Dashboard</h2>
+            <button  id="toggleBtn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="toggleTheme" id="mode-toggle"></div>
+            <div class="profile">
+                <div class="info">
+                    <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
+                    <small class="textMuted">Student</small>
+                </div>
+                <div class="profile_pic">
+                    <img src="../../assets/img/Default_pfp.png">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
     <aside class="aside">
         <div class="toggle">
             <div class="logo">
@@ -66,7 +89,7 @@
         </div>
     </aside>
     <div class="main">
-        <div class="mainCalendar calendar-full">
+        <div class="calendar-full">
             <div class="calendar-border">
                 <header>
                     <p class="current-date"></p>
@@ -88,39 +111,16 @@
                     <ul class="days"></ul>
                 </div>
             </div>
-            <div class="day-info-container">
-                <p class="day-info"></p>
-                <button type="button" onclick="addEvent()">Add Event</button>
-            </div>
-        </div> <!-- This is where the calendar will be displayed -->
-
-        <div class="events"></div> <!-- This is where the events will be displayed -->
-    </div>
-
-
-    <div class="Top-bar">
-        <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
-            <button  id="toggleBtn">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-            <div class="toggleTheme" id="mode-toggle"></div>
-            <div class="profile">
-                <div class="info">
-                    <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
-                    <small class="textMuted">Student</small>
-                </div>
-                <div class="profile_pic">
-                    <img src="../../assets/img/Default_pfp.png">
-
+            <div class="events">
+                <h2>Events</h2>
+                <div id="eventInputContainer">
+                    <input type="text" id="eventInput" placeholder="Enter event here">
+                    <button id="addEvent">Add Event</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer">
-    </div>
-</div>
-
-<script src="index.js"></script>
 </body>
 </html>
+
+<!--Add delete event function-->
