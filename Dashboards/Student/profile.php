@@ -127,12 +127,21 @@ if ($result->num_rows > 0) {
                 <div class="profile-pic">
                     <img src="../../assets/img/Default_pfp.png">
                 </div>
+                <div class="profileBtn">
+                    <button class="btn btn-primary">Change Profile Picture</button>
+                </div>
                 <div class="profileInfo">
-                    <h2><?php echo $user['FName'] . " " . $user['LName']; ?></h2>
-                    <h3></h3>
-                    <h3><?php echo isset($user['phone']) ? $user['phone'] : '<div class="black-box"></div>'; ?></h3>
-                    <h3><?php echo isset($userAddress['city']) ? $userAddress['city'] : '<div class="black-box"></div>'; ?> ,<?php echo isset($userAddress['country']) ? $userAddress['country'] : '<div class="black-box"></div>'; ?></h3>
-                    <h3><?php echo isset($userAddress['zip']) ? $userAddress['zip'] : '<div class="black-box"></div>'; ?></h3>
+                    <div class="line">
+                    </div>
+                    <h3><?php echo isset($user) ? $user ['FName']: 'Guest';?> , <?php echo isset($user) ? $user ['LName']: 'Guest';?></h3>
+                     <div class="line">
+                     </div>
+
+                    <p><?php echo isset($user) ? $user ['email']: 'Guest';?></p>
+                    <p><?php echo isset($user) ? $user ['phone']: 'Guest';?></p>
+                    <p><?php echo isset($userAddress) ? $userAddress ['street']: 'Guest';?></p>
+                    <p><?php echo isset($userAddress) ? $userAddress ['city']: 'Guest';?></p>
+                    <p><?php echo isset($userAddress) ? $userAddress ['postcode']: 'Guest';?></p>
 
 
                 </div>
@@ -181,7 +190,7 @@ if ($result->num_rows > 0) {
                         </form>
                     </div>
                 </div>
-                <div id="Security" class="tabContent">
+                <div id="Security" class="tabContent" style="display: none">
                     <div class="card-body">
                         <form id="formAccountSetting" method="get" onsubmit="">
                             <div class="form-group">
@@ -199,13 +208,13 @@ if ($result->num_rows > 0) {
                                 </div>
                             </div>
                             <div class="ActionButton">
-                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                <button type="submit" class="btn btn-primary me-2" method="">Save changes</button>
                                 <button type="reset" class="btn btn-label-secondary">Cancel</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div id="address" class="tabContent">
+                <div id="address" class="tabContent" style="display: none">
                     <div class="card-body">
                         <form id="formAccountSetting" method="get" onsubmit="">
                             <div class="form-group">
@@ -222,6 +231,14 @@ if ($result->num_rows > 0) {
                                     <label for="inputPostcode">Post Code</label>
                                     <input type="text" class="form-control" id="inputPostcode">
                                 </div>
+                            </div>
+                            <div class=" form-group">
+                                <label for="inputCountry">Country</label>
+                                <input type="text" class="form-control" id="inputCountry">
+                            </div>
+                            <div class="ActionButton">
+                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                <button type="reset" class="btn btn-label-secondary">Cancel</button>
                             </div>
 
                         </form>

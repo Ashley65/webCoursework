@@ -50,8 +50,9 @@ function getCourseDetails($course_id){
 
 
 
-?>
 
+
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -66,11 +67,11 @@ function getCourseDetails($course_id){
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/course_css/courseCards.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourse.css">
-
+    <link rel="stylesheet" href="../../assets/dashboard_css/course.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseInfo.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
+
 <body>
 <div class="container">
     <aside class="aside">
@@ -138,38 +139,46 @@ function getCourseDetails($course_id){
 
         </div>
     </div>
-     <div class="mainBody">
-         <?php foreach ($courses as $course):?>
-             <div class="courseCard" >
-                 <div class="courseBody">
-                     <h2><?php echo $courses[0]['course_name']; ?></h2>
-                     <p><?php echo $courses[0]['course_description']; ?></p>
-                     <a href="course_info.php?course_id=<?php echo $courses[0]['course_id']; ?>">Go to Course</a>
-                 </div>
-                 <div class="courseNav">
-                     <div class="courseNavHeader">
-                         <div id="courseNavHeaderTitle" class="courseTitle">
-                             <p><?php echo $courses[0]['course_name']; ?></p>
-                         </div>
-                            <div id="courseNavHeaderIcon" class="courseIcon">
-                                <div class="courseNavLeft">
-                                    <button class="material-symbols-outlined">arrow_back</button>
-                                </div>
-                                <div class="courseNavRight">
-                                    <button class="material-symbols-outlined">arrow_forward</button>
-                                </div>
-                            </div>
-                     </div>
-                 </div>
-             </div>
-         <?php endforeach; ?>
-    <div class="footer">
+
+    <div class="mainBody">
+        <?php  foreach ($courses as $course)?>
+        <div class="courseCard">
+            <div class="coursebody">
+                <div id="videos " class="tabcontent">
+                    <h3><?php echo $course['course-name']?></h3>
+                </div>
+                <div id="files" class="tabcontent">
+                    <h3>files</h3>
+                    <p>files will be displayed here</p>
+                </div>
+                <div id="Quiz" class="tabcontent" style="display: none">
+                    <h3>Quiz</h3>
+                    <p>Quiz will be displayed here</p>
+                </div>
+            </div>
+
+            <div class="courseNav">
+                <div class="course-videos">
+                    <button class="course-videos-btn tabsBtn" onclick="openPage(event, 'videos')" id="defaultTab">
+                        <span class="material-symbols-outlined">video_library</span>
+                        Videos
+                    </button>
+                </div>
+                <div class="course-files">
+                    <button class="course-files-btn tabsBtn" onclick="openPage(event, 'files')">
+                        <span class="material-symbols-outlined">folder</span>
+                        Files
+                    </button>
+                </div>
+                <div class="course-quiz">
+                    <button class="course-quiz-btn tabsBtn" onclick="openPage(event, 'Quiz')">
+                        <span class="material-symbols-outlined">quiz</span>
+                        Quiz
+                    </button>
+                </div>
+            </div>
 
     </div>
-
-
-
-</div>
-<script src="index.js"></script>
-</body>
-</html>
+        <div class="footer">
+            <p>© 2024 AceTraining</p>
+        </div>
