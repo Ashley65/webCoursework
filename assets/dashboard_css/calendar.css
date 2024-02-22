@@ -125,24 +125,15 @@ body.dark .days li:not(.active):not(.clicked-date):hover::before {
 }
 
 .days li.active::before {
-    background: #0c7db1;
-}
-
-.days li.clicked-date::before {
     background: #ffc107;
 }
 
-.events {
-    margin-left: 50px;
-    width: 300px;
-    height: 600px;
-    overflow-y: auto;
+.days li.clicked-date::before {
+    background: #0c7db1;
 }
 
-.event {
-    border: 1px solid #333333;
-    margin-bottom: 10px;
-    padding: 10px;
+.days li.clicked-date {
+    color: #ffffff;
 }
 
 .days li.event::after {
@@ -246,7 +237,29 @@ body.dark #eventInput:focus {
 }
 
 .days li.has-event::after {
-
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: #a2a2a2;
+    border-radius: 50%;
+    transform: translateX(-50%);
 }
 
-/*ask copilot why dot isnt showing below date in calendar*/
+.delete-event {
+    float: right;
+    cursor: pointer;
+}
+
+.delete-event {
+    display: inline-block;
+    margin-right: 10px;
+    color: #a2a2a2;
+    font-size: 1.2em;
+}
+
+.delete-event:hover {
+    color: #0c7db1;
+}

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCalendar.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
 <body>
@@ -114,8 +115,7 @@
             <div class="events">
                 <h2>Events</h2>
                 <div id="eventInputContainer">
-                    <input type="text" id="eventInput" placeholder="Enter event here">
-                    <button id="addEvent">Add Event</button>
+                    <input type="text" id="eventInput" placeholder="Enter event here" maxlength="50">                    <button id="addEvent">Add Event</button>
                 </div>
             </div>
         </div>

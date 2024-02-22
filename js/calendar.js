@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let date = new Date(),
         currYear = date.getFullYear(),
         currMonth = date.getMonth(),
-        events = {},
-        selectedDate = null;
+        events = JSON.parse(localStorage.getItem('events')) || {},
+        selectedDate = new Date();
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"];
@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 1; i <= lastDateofMonth; i++) {
             let isSelectedDate = selectedDate && i === selectedDate.getDate() && currMonth === selectedDate.getMonth() && currYear === selectedDate.getFullYear();
             let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear();
-            let hasEvent = events[`${currYear}-${currMonth + 1}-${i}`] ? " has-event" : "";
-            liTag += `<li class="${isToday ? 'active' : ''}${isSelectedDate ? ' clicked-date' : ''}${hasEvent}">${i}</li>`;
+            let hasEvent = events[`${currYear}-${currMonth + 1}-${i}`] && events[`${currYear}-${currMonth + 1}-${i}`].length > 0 ? " has-event" : "";
+            liTag += `<li class="${isToday ? 'active' : ''}${isSelectedDate ? ' clicked-date' : ''}${hasEvent}" id="date-${i}">${i}</li>`;
         }
 
         for (let i = lastDayofMonth; i < 6; i++) {
@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     renderCalendar();
 
+    displayEventsForDate(selectedDate.getDate());
+
     prevNextIcon.forEach(icon => {
         icon.addEventListener("click", () => {
             currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
@@ -70,25 +72,65 @@ document.addEventListener("DOMContentLoaded", function() {
     confirmButton.addEventListener('click', function() {
         const eventText = eventInput.value;
         if (eventText && selectedDate) {
-            if (!events[selectedDate.getDate()]) {
-                events[selectedDate.getDate()] = [];
+            const selectedDateKey = `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${selectedDate.getDate()}`;
+            if (!events[selectedDateKey]) {
+                events[selectedDateKey] = [];
             }
-            events[selectedDate.getDate()].push(eventText);
+            events[selectedDateKey].push(eventText);
+            localStorage.setItem('events', JSON.stringify(events));
             displayEventsForDate(selectedDate.getDate());
             eventInput.value = '';
         }
     });
+
+    eventInput.addEventListener('keypress', function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            confirmButton.click();
+        }
+    });
+
     function displayEventsForDate(date) {
         const eventElements = eventsContainer.querySelectorAll('.event');
         eventElements.forEach(eventElement => {
             eventsContainer.removeChild(eventElement);
         });
 
-        const eventsForDate = events[date] || [];
+        const eventsForDate = events[`${currYear}-${currMonth + 1}-${date}`] || [];
+        if (eventsForDate.length > 0) {
+            const dateElement = document.getElementById(`date-${date}`);
+            if (dateElement) {
+                dateElement.classList.add('has-event');
+            }
+        }
+
         eventsForDate.forEach((eventText, index) => {
             const eventElement = document.createElement('div');
             eventElement.classList.add('event');
             eventElement.textContent = eventText;
+
+            const deleteButton = document.createElement('span');
+            deleteButton.classList.add('delete-event');
+            deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteButton.addEventListener('click', function() {
+                const eventIndex = eventsForDate.indexOf(eventText);
+                if (eventIndex > -1) {
+                    eventsForDate.splice(eventIndex, 1);
+                }
+
+                localStorage.setItem('events', JSON.stringify(events));
+
+                eventsContainer.removeChild(eventElement);
+
+                if (eventsForDate.length === 0) {
+                    const dateElement = document.getElementById(`date-${selectedDate.getDate()}`);
+                    if (dateElement) {
+                        dateElement.classList.remove('has-event');
+                    }
+                }
+            });
+            eventElement.appendChild(deleteButton);
+
             if (index === 0) {
                 eventElement.style.marginTop = '-460px';
             }
