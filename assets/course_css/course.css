@@ -1,9 +1,9 @@
 
 .course-videos-Btn{
-    background-color: #f8f9fa;
+    background-color: var(--color-background);
     width: 100%;
     border: none;
-    color: #495057;
+    color: var(--color-dark);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -15,10 +15,10 @@
     transition: 0.3s;
 }
 .course-files-Btn{
-    background-color: #f8f9fa;
+    background-color: var(--color-background);
     border: none;
     width: 100%;
-    color: #495057;
+    color: var(--color-dark);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -30,10 +30,10 @@
     transition: 0.3s;
 }
 .course-quiz-Btn{
-    background-color: #f8f9fa;
+    background-color:var(--color-background);
     width: 100%;
     border: none;
-    color: #495057;
+    color: var(--color-dark);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -44,6 +44,45 @@
     margin: 0px 5px;
     transition: 0.3s;
 }
+.course-materials-btn{
+    background-color: var(--color-background);
+    width: 100%;
+    border: none;
+    color: var(--color-dark);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0px 5px;
+    transition: 0.3s;
+}
+.course-assignments-btn{
+    background-color: var(--color-background);
+    width: 100%;
+    border: none;
+    color: var(--color-dark);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0px 5px;
+    transition: 0.3s;
+}
+.course-assignments-btn:hover{
+    background-color: #073d58;
+    color: white;
+}
+.course-materials-btn:hover{
+    background-color: #073d58;
+    color: white;
+}
+
 
 .course-videos-Btn:hover{
     background-color: #073d58;
@@ -84,4 +123,10 @@
     border: 1px solid;
     border-color: var(--border-colors);
     border-radius: 10px;
+}
+.courseIcon {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
 }

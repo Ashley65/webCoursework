@@ -12,9 +12,7 @@
 
 </head>
 <body>
-<?php
 
-?>
 <form action="RSValidate.php" method="post" AUTOCOMPLETE="off" >
     <div class="loginBox">
         <h1>Student Signup</h1>
@@ -51,7 +49,7 @@
         <div class="textbox">
             <i class="fas fa-envelope"></i>
             <label>
-                <input type="text" placeholder="Email" name="email" value="">
+                <input type="email" placeholder="Email" name="email" value="">
             </label>
         </div>
         <div class="textbox">
@@ -70,7 +68,6 @@
 
         <input class="btn" type="submit" name="signup" value="sign up">
         <footer> Already a member? <a href="LoginStudent.php"> login here</a> </footer>
-
 
     </div>
 </form>

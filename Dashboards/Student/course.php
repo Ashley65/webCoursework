@@ -66,7 +66,7 @@ function getCourseDetails($course_id){
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/course_css/courseCards.css">
+    <link rel="stylesheet" href="../../assets/course_css/course.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourse.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
