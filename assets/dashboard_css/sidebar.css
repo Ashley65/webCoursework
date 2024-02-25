@@ -21,13 +21,13 @@ aside .toggle{
 aside .toggle .logo{
     display: flex;
     gap: 0.5rem;
+    margin-top: 15px;
 }
 aside .toggle .logo img{
     width: 8rem;
     height: 4rem;
     object-fit: fill;
 }
-
 
 aside .sidebar{
     display: flex;

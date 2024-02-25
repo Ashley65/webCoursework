@@ -25,8 +25,6 @@
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-1);
     transition: all 0.5s ease;
-
-
 }
 
 .Top-bar .dark-mode span{

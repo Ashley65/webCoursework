@@ -1,0 +1,80 @@
+body {
+    overflow-x: auto;
+}
+
+#timetable-container {
+    padding: 50px;
+    background-color: #ffffff;
+    margin-left: 100px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+body.dark #timetable-container {
+    background-color: #1e1e1e;
+}
+
+#timetable {
+    width: 800px;
+    border-collapse: collapse;
+}
+
+#timetable th {
+    border: 1px solid #000000;
+    padding: 10px;
+    text-align: center;
+    width: 100px;
+}
+
+body.dark #timetable th {
+    border: 1px solid #ffffff;
+}
+
+#timetable td {
+    height: 50px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+body.dark #timetable td {
+    border: 1px solid #ffffff;
+}
+
+#week-range {
+    position: relative;
+    left: 310px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#year-heading {
+    position: relative;
+    top: 42px;
+    user-select: none;
+}
+
+#prev-week, #next-week {
+    padding: 0;
+    position: relative;
+    top: 78px;
+    right: 350px;
+    user-select: none;
+    z-index: 1;
+}
+
+#prev-week:hover, #next-week:hover {
+    cursor: pointer;
+}
+
+#current-week {
+    position: relative;
+    top: 78px;
+    right: 350px;
+    user-select: none;
+    z-index: 1;
+
+}
+
+#current-week:hover {
+    cursor: pointer;
+}

@@ -1,30 +1,3 @@
-<?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//
-//
-//
-//?>
-
 <! DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +7,16 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../js/script.js"></script>
     <script src="../../js/theme.js"></script>
+    <script src="../../js/timetable.js"></script>
     <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/timetable.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForProfile.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
 </head>
 <body>
 <div class="container">
@@ -78,7 +55,10 @@
                 <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Timetable</h3>
             </a>
-
+            <a href="calendar.php">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Calendar</h3>
+            </a>
             <a href="../../LoginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
@@ -88,7 +68,6 @@
     </aside>
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -105,7 +84,14 @@
         </div>
     </div>
     <main class="main">
-
+        <div id="timetable-container">
+            <span id="prev-week" class="material-symbols-rounded">chevron_left</span>
+            <span id="next-week" class="material-symbols-rounded">chevron_right</span>
+            <span id="current-week" class="material-symbols-rounded">today</span>
+            <h2 id="year-heading"></h2>
+            <h2 id="week-range"></h2>
+            <table id="timetable"></table>
+        </div>
     </main>
     <div class="footer">
 
@@ -114,6 +100,5 @@
 
 
 </div>
-<script src="index.js"></script>
 </body>
 </html>

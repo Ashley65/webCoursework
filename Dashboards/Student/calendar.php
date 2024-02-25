@@ -122,5 +122,3 @@
     </div>
 </body>
 </html>
-
-<!--Add delete event function-->

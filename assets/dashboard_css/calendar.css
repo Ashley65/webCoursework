@@ -1,3 +1,7 @@
+.container {
+    overflow-x: auto;
+}
+
 .calendar-full {
     display: flex;
     justify-content: center;

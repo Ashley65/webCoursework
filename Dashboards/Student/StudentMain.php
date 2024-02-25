@@ -76,7 +76,10 @@
                     <span class="material-symbols-outlined">calendar_month</span>
                     <h3>Timetable</h3>
                 </a>
-
+                <a href="calendar.php">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <h3>Calendar</h3>
+                </a>
                 <a href="../../LoginSystem/logout.php">
                     <span class="material-symbols-outlined">logout</span>
                     <h3>Logout</h3>
@@ -92,7 +95,6 @@
 
         <div class="Top-bar">
             <div class="nav">
-                <h2><span class="blue">Student</span> Dashboard</h2>
                 <button  id="toggleBtn">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
