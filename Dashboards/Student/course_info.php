@@ -1,58 +1,68 @@
 <?php
-session_start();
-include "connection.php";
-global $conn;
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
-
-    exit;
-}
-
-//get the user personal details
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-}else{
-    echo "No data found with id:" . $_SESSION['id'];
-
-}
-//get the course details from the courses table where the student is enrolled in
-$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result2 = $stmt->get_result();
-// Initialize an empty array to hold the courses
-$courses = [];
-
-// Fetch all courses the student is enrolled in along with the user details
-while($course = $result2->fetch_assoc()){
-    $courses[] = $course;
-}
-function getCourseDetails($course_id){
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-    $stmt->bind_param("i", $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $result = $result->fetch_assoc();
-    if (0 > $result->num_rows) {
-        return $result;
-    }else{
-        return "No data found with id:" . $course_id;
-    }
-}
-
-
-
-
-
-?>
+//session_start();
+//include "connection.php";
+//global $conn;
+//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//    header("location: /aceTrain/LoginSystem/loginStudent.php");
+//
+//    exit;
+//}
+//
+////get the user personal details
+//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $user = $result->fetch_assoc();
+//}else{
+//    echo "No data found with id:" . $_SESSION['id'];
+//
+//}
+////get the course details from the courses table where the student is enrolled in
+//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result2 = $stmt->get_result();
+//// Initialize an empty array to hold the courses
+//$courses = [];
+//
+//// Fetch all courses the student is enrolled in along with the user details
+//while($course = $result2->fetch_assoc()){
+//    $courses[] = $course;
+//}
+//function getCourseMaterials($course_id): array
+//{
+//    global $conn;
+//    $materials = []; // Initialize an empty array to hold the course materials
+//
+//    // Prepare a statement to fetch all course materials for a given course
+//    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
+//    $stmt->bind_param("i", $course_id);
+//    $stmt->execute();
+//    $result = $stmt->get_result();
+//
+//    // Fetch all course materials for the given course
+//
+//    while($material = $result->fetch_assoc()){
+//        $materials[] = $material;
+//    }
+//    return $materials;
+//
+//}
+//
+//$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0; // Get course ID and ensure it's an integer
+//
+//$course_materials = getCourseMaterials($course_id); // Fetch all course materials for the given course
+//
+//
+//
+//
+//
+//
+//?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -67,8 +77,9 @@ function getCourseDetails($course_id){
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/course.css">
+    <link rel="stylesheet" href="../../assets/course_css/course.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseInfo.css">
+   <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 
@@ -141,16 +152,31 @@ function getCourseDetails($course_id){
     </div>
 
     <div class="mainBody">
-        <?php  foreach ($courses as $course)?>
+<!--        --><?php // foreach ($courses as $course)?>
         <div class="courseCard">
             <div class="coursebody">
-                <div id="videos " class="tabcontent">
-                    <h3><?php echo $course['course-name']?></h3>
+<!--                <h3>--><?php //echo htmlspecialchars($course['course_name']); ?><!--</h3>-->
+                <div id="videos " class="tabcontent" style="display: none">
+                    <h3>videos</h3>
                 </div>
                 <div id="files" class="tabcontent">
-                    <h3>files</h3>
-                    <p>files will be displayed here</p>
+                    <h3>Files</h3>
+<!--                    --><?php
+//                    if (!empty($course_materials)) {
+//                        echo "<ul>";
+//                        foreach ($course_materials as $material) {
+//                            echo "<li>";
+//                            echo "<a {$material['materialName']}'>{$material['materialName']}</a> - ";
+//                            echo "<a href='../Teacher/download.php?file=" . urlencode($material['material_path']) . "'>Download</a>";
+//                            echo "</li>";
+//                        }
+//                        echo "</ul>";
+//                    } else {
+//                        echo "No course materials found for the given course ID: " . $course_id;
+//                    }
+//                    ?>
                 </div>
+
                 <div id="Quiz" class="tabcontent" style="display: none">
                     <h3>Quiz</h3>
                     <p>Quiz will be displayed here</p>

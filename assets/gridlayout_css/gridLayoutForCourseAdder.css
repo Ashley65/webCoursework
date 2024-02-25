@@ -1,0 +1,66 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.3fr 2.6fr 0.2fr;
+    gap : 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar footer footer";
+}
+
+.aside{
+    grid-area: sidebar;
+
+}
+.Top-bar {
+    grid-area: header;
+}
+.main {
+    display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 1fr 0.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". . . ."
+    ". courseCard courseCard ."
+    ". courseCard courseCard ."
+    ". . . .";
+    grid-area: main;
+}
+
+.courseCard {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "courseNav courseNav courseNav"
+    "fileAdderBody fileAdderBody fileAdderBody"
+    "fileAdderBody fileAdderBody fileAdderBody";
+    grid-area: courseCard;
+}
+.courseNav {
+    display: grid;
+    grid-template-columns: 0.5fr .5fr .5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "course-videos course-materials course-assignments ."
+    "course-videos course-materials course-assignments ."
+    "course-videos course-materials course-assignments .";
+    grid-area: courseNav;
+}
+.course-videos { grid-area: course-videos; }
+.course-materials { grid-area: course-materials; }
+.course-assignments { grid-area: course-assignments; }
+.fileAdderBody { grid-area: fileAdderBody; }
+.footer { grid-area: footer; }
+
+
+
+
+
+
+
