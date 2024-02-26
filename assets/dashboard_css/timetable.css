@@ -8,6 +8,7 @@ body {
     margin-left: 100px;
     text-align: center;
     border-radius: 10px;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable-container {
@@ -24,6 +25,7 @@ body.dark #timetable-container {
     padding: 10px;
     text-align: center;
     width: 100px;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable th {
@@ -34,6 +36,7 @@ body.dark #timetable th {
     height: 50px;
     border: 1px solid #000;
     padding: 10px;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable td {
