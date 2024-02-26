@@ -5,7 +5,6 @@ window.onload = function() {
     function highlightCurrentTime() {
         let now = new Date();
         let currentHour = now.getHours();
-        let currentDay = now.getDay();
 
         if (currentHour >= 8 && currentHour <= 18) {
             let timetable = document.getElementById('timetable');
@@ -14,13 +13,19 @@ window.onload = function() {
             let currentHourRow = rows[currentHour - 7];
 
             if (currentHourRow) {
-                let cells = currentHourRow.getElementsByTagName('td');
+                let hourCell = currentHourRow.getElementsByTagName('td')[0];
 
-                let currentCell = cells[currentDay];
+                if (hourCell) {
+                    hourCell.style.backgroundColor = '#0c7db1';
+                    hourCell.style.color = '#ffffff';
+                }
+            }
 
-                if (currentCell) {
-                    currentCell.style.backgroundColor = '#0c7db1';
-                    currentCell.style.color = '#ffffff';
+            for (let i = 0; i < rows.length; i++) {
+                if (i !== currentHour - 7) {
+                    let hourCell = rows[i].getElementsByTagName('td')[0];
+                    hourCell.style.backgroundColor = '';
+                    hourCell.style.color = '';
                 }
             }
         }
