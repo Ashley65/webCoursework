@@ -1,68 +1,91 @@
 <?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-////get the course details from the courses table where the student is enrolled in
-//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result2 = $stmt->get_result();
-//// Initialize an empty array to hold the courses
-//$courses = [];
-//
-//// Fetch all courses the student is enrolled in along with the user details
-//while($course = $result2->fetch_assoc()){
-//    $courses[] = $course;
-//}
-//function getCourseMaterials($course_id): array
-//{
-//    global $conn;
-//    $materials = []; // Initialize an empty array to hold the course materials
-//
-//    // Prepare a statement to fetch all course materials for a given course
-//    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
-//    $stmt->bind_param("i", $course_id);
-//    $stmt->execute();
-//    $result = $stmt->get_result();
-//
-//    // Fetch all course materials for the given course
-//
-//    while($material = $result->fetch_assoc()){
-//        $materials[] = $material;
-//    }
-//    return $materials;
-//
-//}
-//
-//$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0; // Get course ID and ensure it's an integer
-//
-//$course_materials = getCourseMaterials($course_id); // Fetch all course materials for the given course
-//
-//
-//
-//
-//
-//
-//?>
+session_start();
+include "connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+//get the course details from the courses table where the student is enrolled in
+$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result2 = $stmt->get_result();
+// Initialize an empty array to hold the courses
+$courses = [];
+
+// Fetch all courses the student is enrolled in along with the user details
+while($course = $result2->fetch_assoc()){
+    $courses[] = $course;
+}
+function getCourseMaterials($course_id): array
+{
+    global $conn;
+    $materials = []; // Initialize an empty array to hold the course materials
+
+    // Prepare a statement to fetch all course materials for a given course
+    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch all course materials for the given course
+
+    while($material = $result->fetch_assoc()){
+        $materials[] = $material;
+    }
+    return $materials;
+
+}
+
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0; // Get course ID and ensure it's an integer
+
+$course_materials = getCourseMaterials($course_id); // Fetch all course materials for the given course
+
+//function that get all course materials for a given course that are videos
+function getCourseVideos($course_id): array
+{
+    global $conn;
+    $videos = []; // Initialize an empty array to hold the course videos
+
+    // Prepare a statement to fetch all course materials for a given course
+    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch all course materials for the given course that are have a file Type of video
+    while ($material = $result->fetch_assoc()) {
+        if ($material['fileType'] == "video/mp4") {
+            $videos[] = $material;
+        }
+    }
+    return $videos;
+
+}
+$course_videos = getCourseVideos($course_id); // Fetch all course videos for the given course
+
+
+
+
+
+
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -130,7 +153,7 @@
     </aside>
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
+
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -152,29 +175,44 @@
     </div>
 
     <div class="mainBody">
-<!--        --><?php // foreach ($courses as $course)?>
+        <?php  foreach ($courses as $course)?>
         <div class="courseCard">
             <div class="coursebody">
-<!--                <h3>--><?php //echo htmlspecialchars($course['course_name']); ?><!--</h3>-->
-                <div id="videos " class="tabcontent" style="display: none">
+                <h3><?php echo htmlspecialchars($course['course_name']); ?></h3>
+                <div id="videos" class="tabcontent" style="display: none">
                     <h3>videos</h3>
+                    <?php
+                    if (!empty($course_videos)) {
+                        echo "<ul>";
+                        foreach ($course_videos as $video) {
+                            echo "<li>";
+                            echo "<a {$video['materialName']}'>{$video['materialName']}</a> - ";
+                            // Load a page that will allow the user to play the video on the browser
+                            echo "<a href='videoPlayer.php?video=" . urlencode($video['material_path']) . "'>Play</a>";
+                            echo "</li>";
+                        }
+                        echo "</ul>";
+                    } else {
+                        echo "No course videos found for the given course ID: " . $course_id;
+                    }
+                    ?>
                 </div>
                 <div id="files" class="tabcontent">
                     <h3>Files</h3>
-<!--                    --><?php
-//                    if (!empty($course_materials)) {
-//                        echo "<ul>";
-//                        foreach ($course_materials as $material) {
-//                            echo "<li>";
-//                            echo "<a {$material['materialName']}'>{$material['materialName']}</a> - ";
-//                            echo "<a href='../Teacher/download.php?file=" . urlencode($material['material_path']) . "'>Download</a>";
-//                            echo "</li>";
-//                        }
-//                        echo "</ul>";
-//                    } else {
-//                        echo "No course materials found for the given course ID: " . $course_id;
-//                    }
-//                    ?>
+                    <?php
+                    if (!empty($course_materials)) {
+                        echo "<ul>";
+                        foreach ($course_materials as $material) {
+                            echo "<li>";
+                            echo "<a {$material['materialName']}'>{$material['materialName']}</a> - ";
+                            echo "<a href='../Teacher/download.php?file=" . urlencode($material['material_path']) . "'>Download</a>";
+                            echo "</li>";
+                        }
+                        echo "</ul>";
+                    } else {
+                        echo "No course materials found for the given course ID: " . $course_id;
+                    }
+                    ?>
                 </div>
 
                 <div id="Quiz" class="tabcontent" style="display: none">

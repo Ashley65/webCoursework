@@ -159,7 +159,7 @@ if ($result->num_rows > 0) {
             <div class="tabsArea">
                 <div id="personal" class="tabContent">
                     <div class="card-body">
-                        <form id="formAccountSettings" method="GET" onsubmit="">
+                        <form id="formAccountSettings" method="GET" action="changeInfo.php">
                             <div class="form-row">
                                 <div class="form-group ">
                                     <label for="inputFirstName">First name</label>
@@ -192,7 +192,7 @@ if ($result->num_rows > 0) {
                 </div>
                 <div id="Security" class="tabContent" style="display: none">
                     <div class="card-body">
-                        <form id="formAccountSetting" method="get" onsubmit="">
+                        <form id="formAccountSetting" method="get" action="changePassword.php">
                             <div class="form-group">
                                 <label for="currentPassword">Current Password</label>
                                 <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
@@ -216,12 +216,11 @@ if ($result->num_rows > 0) {
                 </div>
                 <div id="address" class="tabContent" style="display: none">
                     <div class="card-body">
-                        <form id="formAccountSetting" method="get" onsubmit="">
+                        <form id="formAccountSetting" method="get" action="changeAddr.php">
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                             </div>
-
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="inputCity">City</label>
@@ -240,7 +239,6 @@ if ($result->num_rows > 0) {
                                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                 <button type="reset" class="btn btn-label-secondary">Cancel</button>
                             </div>
-
                         </form>
                     </div>
                 </div>

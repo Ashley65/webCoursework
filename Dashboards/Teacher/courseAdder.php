@@ -1,3 +1,28 @@
+<?php
+session_start();
+include "../Student/connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +45,7 @@
 <div class="container">
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
+            <h2><span class="blue">Teacher</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -28,7 +53,7 @@
             <div class="profile">
                 <div class="info">
                     <p>hey, <?php echo isset($user) ? $user ['FName']: 'Guest';?></p>
-                    <small class="textMuted">Student</small>
+                    <small class="textMuted">Teacher</small>
                 </div>
                 <div class="profile_pic">
                     <img src="../../assets/img/Default_pfp.png">
@@ -55,15 +80,15 @@
                 <span class="material-symbols-outlined">dashboard</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="profile.php"  class="active" >
+            <a href="profile.php" >
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="course.php" >
+            <a href="courseAdder.php" class="active" >
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="assignment.php">
+            <a href="assignmentPost.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
@@ -92,12 +117,6 @@
                     <button class="course-materials-btn tabsBtn" onclick="openPage(event, 'materials')">
                         <span class="material-symbols-outlined">book</span>
                         Materials
-                    </button>
-                </div>
-                <div class="course-assignments">
-                    <button class="course-assignments-btn tabsBtn" onclick="openPage(event, 'assignments')">
-                        <span class="material-symbols-outlined">assignment</span>
-                        Assignments
                     </button>
                 </div>
             </div>
@@ -141,33 +160,6 @@
                           </div>
                         <div class="fileName">
                             <label for="material_name">Video Name:
-                                <input type="text" name="material_name">
-                            </label>
-                        </div>
-                        <div class="description">
-                            <label for="description">Description:
-                                <textarea name="description"></textarea>
-                            </label>
-                        </div>
-                        <div class="file">
-                            <label for="file">Select File:
-                                <input type="file" name="file">
-                            </label>
-                        </div>
-                        <div class="submit">
-                            <input type="submit" value="Upload" name="submit">
-                        </div>
-                    </form>
-                </div>
-                <div id="assignments" class="addMaterial" style="display: none">
-                    <form class="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
-                       <div class="courseID">
-                           <label for="course_id">Course ID:
-                                <input type="text" name="course_id">
-                           </label>
-                          </div>
-                        <div class="fileName">
-                            <label for="material_name">Assignment Name:
                                 <input type="text" name="material_name">
                             </label>
                         </div>

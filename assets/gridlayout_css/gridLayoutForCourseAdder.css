@@ -30,6 +30,7 @@
     grid-area: main;
 }
 
+
 .courseCard {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 2fr;
