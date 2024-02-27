@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
 <link rel="stylesheet" href="../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseInfo.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigmentMaker.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/assigmentMaker.css">
     <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
@@ -66,7 +67,7 @@
                     <span class="material-symbols-outlined">book</span>
                     <h3>Course</h3>
                 </a>
-                <a href="assignmentPost.php">
+                <a href="assignment.php">
                     <span class="material-symbols-outlined">assignment</span>
                     <h3>Assignment</h3>
                 </a>
@@ -81,31 +82,34 @@
                 </a>
             </div>
         </aside>
-
-        <h1>Assignment Maker</h1>
-
         <main class="mainBody">
-            <form action="assignmentPost.php" method="post">
-                <label for="assignment_name">Assignment Name</label>
-                <input type="text" id="assignment_name" name="assignment_name">
-                <label for="course_id">Course ID</label>
-                <input type="text" id="course_id" name="course_id">
-                <label for="instructor_id">Instructor ID</label>
-                <input type="text" id="instructor_id" name="instructor_id">
-                <label for="assignment_type">Assignment Type</label>
-                <select id="assignment_type" name="assignment_type">
-                    <option value="Homework">Homework</option>
-                    <option value="Test">Test</option>
-                    <option value="Project">Project</option>
-                </select>
-                <label for="assignment_points">Assignment Points</label>
-                <input type="number" id="assignment_points" name="assignment_points">
-                <label for="assignment_description">Assignment Description</label>
-                <textarea id="assignment_description" name="assignment_description"></textarea>
-                <label for="assignment_due_date">Due Date</label>
-                <input type="date" id="assignment_due_date" name="assignment_due_date">
-                <input type="submit" value="Create">
-            </form>
+            <div class="assignmentMakers">
+                <div class="assignment_header">
+                    <h1>Assignment Maker</h1>
+                <div class="assignment">
+                    <form action="assignmentPost.php" method="post">
+                        <label for="assignment_name">Assignment Name</label>
+                        <input type="text" id="assignment_name" name="assignment_name">
+                        <label for="course_id">Course ID</label>
+                        <input type="text" id="course_id" name="course_id">
+                        <label for="instructor_id">Instructor ID</label>
+                        <input type="text" id="instructor_id" name="instructor_id">
+                        <label for="assignment_type">Assignment Type</label>
+                        <select id="assignment_type" name="assignment_type">
+                            <option value="Homework">Homework</option>
+                            <option value="Test">Test</option>
+                            <option value="Project">Project</option>
+                        </select>
+                        <label for="assignment_points">Assignment Points</label>
+                        <input type="number" id="assignment_points" name="assignment_points">
+                        <label for="assignment_description">Assignment Description</label>
+                        <textarea id="assignment_description" name="assignment_description"></textarea>
+                        <label for="assignment_due_date">Due Date</label>
+                        <input type="date" id="assignment_due_date" name="assignment_due_date">
+                        <input type="submit" value="Create">
+                    </form>
+                </div>
+            </div>
         </main>
     </div>
 
