@@ -9,7 +9,7 @@
     align-items: center;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
-    margin-right: 25px;
+    margin-right: -15px;
     margin-top: -10px
 }
 

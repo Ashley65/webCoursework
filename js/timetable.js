@@ -26,6 +26,8 @@ window.onload = function() {
                     let hourCell = rows[i].getElementsByTagName('td')[0];
                     hourCell.style.backgroundColor = '';
                     hourCell.style.color = '';
+
+                    //Refresh page after there is an hour change!!
                 }
             }
         }
