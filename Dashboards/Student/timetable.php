@@ -64,8 +64,8 @@
                 <h3>Logout</h3>
             </a>
         </div>
-
     </aside>
+
     <div class="Top-bar">
         <div class="nav">
             <button  id="toggleBtn">
@@ -83,22 +83,18 @@
             </div>
         </div>
     </div>
-    <main class="main">
+    <div id="timetable-all">
+        <div id="timetable-header">
+            <h2 id="year-heading"></h2>
+            <h2 id="week-range"></h2>
+        </div>
         <div id="timetable-container">
             <span id="prev-week" class="material-symbols-rounded">chevron_left</span>
             <span id="next-week" class="material-symbols-rounded">chevron_right</span>
             <span id="current-week" class="material-symbols-rounded">today</span>
-            <h2 id="year-heading"></h2>
-            <h2 id="week-range"></h2>
             <table id="timetable"></table>
         </div>
-    </main>
-    <div class="footer">
-
     </div>
-
-
-
 </div>
 </body>
 </html>

@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Home</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../js/script.js"></script>
     <script src="../../js/theme.js"></script>
@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForDash.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/studentMain.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -87,11 +88,6 @@
             </div>
 
         </aside>
-        <main>
-
-
-
-        </main>
 
         <div class="Top-bar">
             <div class="nav">
@@ -108,17 +104,16 @@
                         <img src="../../assets/img/Default_pfp.png">
                     </div>
                 </div>
-
-
-
             </div>
         </div>
-
-
-
-
+        <div id="aboutBox">
+            <h1>About Ace Training</h1>
+            <h2>Ace Training is an educational learning environment which
+                aims to improve your studies by providing a user-friendly
+                platform for students to access their course materials,
+                assignments, view their timetable and much more.
+            </h2>
+        </div>
     </div>
-    <script src="index.js"></script>
-
 </body>
 </html>

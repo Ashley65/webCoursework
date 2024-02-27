@@ -2,12 +2,26 @@ body {
     overflow-x: auto;
 }
 
+#timetable-all {
+    margin-top: 38px;
+    display: block;
+    align-items: center;
+}
+
+#timetable-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -68px;
+}
+
 #timetable-container {
     padding: 50px;
     background-color: #ffffff;
     margin-left: 100px;
     text-align: center;
     border-radius: 10px;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable-container {
@@ -22,8 +36,10 @@ body.dark #timetable-container {
 #timetable th {
     border: 1px solid #000000;
     padding: 10px;
+    font-weight: 300;
     text-align: center;
     width: 100px;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable th {
@@ -34,6 +50,8 @@ body.dark #timetable th {
     height: 50px;
     border: 1px solid #000;
     padding: 10px;
+    font-weight: 300;
+    transition: 0.3s ease all;
 }
 
 body.dark #timetable td {
@@ -41,22 +59,20 @@ body.dark #timetable td {
 }
 
 #week-range {
-    position: relative;
-    left: 310px;
-    padding: 10px;
     font-size: 20px;
+    margin-left: 720px;
 }
 
 #year-heading {
-    position: relative;
-    top: 42px;
+    position: fixed;
     user-select: none;
+    margin-left: 100px;
 }
 
 #prev-week, #next-week {
     padding: 0;
     position: relative;
-    top: 78px;
+    top: -15px;
     right: 350px;
     user-select: none;
     z-index: 1;
@@ -68,11 +84,10 @@ body.dark #timetable td {
 
 #current-week {
     position: relative;
-    top: 78px;
+    top: -15px;
     right: 350px;
     user-select: none;
     z-index: 1;
-
 }
 
 #current-week:hover {
