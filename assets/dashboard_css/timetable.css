@@ -3,6 +3,7 @@ body {
 }
 
 #timetable-all {
+    margin-top: 38px;
     display: block;
     align-items: center;
 }
@@ -59,13 +60,13 @@ body.dark #timetable td {
 
 #week-range {
     font-size: 20px;
+    margin-left: 720px;
 }
 
 #year-heading {
+    position: fixed;
     user-select: none;
-    margin-left: 420px;
-    margin-right: 220px;
-
+    margin-left: 100px;
 }
 
 #prev-week, #next-week {
