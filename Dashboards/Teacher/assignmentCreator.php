@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <title>Assignment Maker</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
-    <script src="theme.js"></script>
+    <script src="../../https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/theme.js"></script>
     <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-<link rel="stylesheet" href="../../assets/course_css/course.css">
+    <link rel="stylesheet" href="../../assets/course_css/course.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigmentMaker.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/assigmentMaker.css">
     <script src="../../js/Profile.js"></script>
@@ -85,7 +85,7 @@
         <main class="mainBody">
             <div class="assignmentMakers">
                 <div class="assignment_header">
-                    <h1>Assignment Maker</h1>
+                    <h1>Create Assignment</h1>
                 <div class="assignment">
                     <form action="assignmentPost.php" method="post">
                         <label for="assignment_name">Assignment Name</label>

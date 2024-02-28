@@ -1,45 +1,45 @@
-.container{
-    display: grid;
+.container {  display: grid;
     grid-template-columns: 0.4fr 1.6fr 1fr;
-    grid-template-rows: 0.3fr 2.6fr 0.2fr;
-    gap : 0 0;
+    grid-template-rows: 0.2fr 2.6fr 0.12fr;
+    gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-    "sidebar header header"
-    "sidebar main main"
-    "sidebar footer footer";
+    "aside Top-bar Top-bar"
+    "aside mainBody mainBody"
+    "aside footer footer";
 }
-.aside{
-    grid-area: sidebar;
 
-}
-.Top-bar{
-    grid-area: header;
-}
-.mainBody {
-    display: grid;
+.Top-bar { grid-area: Top-bar; }
+
+.aside { grid-area: aside; }
+
+.mainBody {  display: grid;
     grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
     grid-template-rows: 0.2fr 2.6fr 1fr 0.2fr;
     gap: 0px 0px;
+    grid-auto-flow: row;
     grid-template-areas:
     ". . . ."
-    ". assignmentMaker assignmentMaker ."
-    ". assignmentMaker assignmentMaker ."
+    ". assignmentMakers assignmentMakers ."
+    ". assignmentMakers assignmentMakers ."
     ". . . .";
-    grid-area: main;
+    grid-area: mainBody;
 }
-.assignmentMaker {
-    display: grid;
+
+.assignmentMakers {  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.2fr 1.8fr 1fr;
     gap: 0px 0px;
+    grid-auto-flow: row;
     grid-template-areas:
     "assignment_header assignment_header assignment_header"
-
     "assignment assignment assignment"
     "assignment assignment assignment";
-    grid-area: assignmentMaker;
+    grid-area: assignmentMakers;
 }
+
 .assignment_header { grid-area: assignment_header; }
+
 .assignment { grid-area: assignment; }
+
 .footer { grid-area: footer; }

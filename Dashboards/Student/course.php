@@ -105,10 +105,12 @@ function getCourseDetails($course_id){
                 <h3>Assignment</h3>
             </a>
             <a href="timetable.php">
-                <span class="material-symbols-outlined">calendar_month</span>
+                <span class="material-symbols-outlined">today</span>
                 <h3>Timetable</h3>
             </a>
-
+            <a href="calendar.php">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Calendar</h3>
             <a href="../../LoginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>

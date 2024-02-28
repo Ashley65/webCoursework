@@ -74,7 +74,7 @@
                 <h3>Assignment</h3>
             </a>
             <a href="timetable.php">
-                <span class="material-symbols-outlined">calendar_month</span>
+                <span class="material-symbols-outlined">today</span>
                 <h3>Timetable</h3>
             </a>
             <a href="calendar.php">

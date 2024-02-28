@@ -2,6 +2,15 @@ window.onload = function() {
     let currentWeekStart = new Date();
     currentWeekStart.setDate(currentWeekStart.getDate() - currentWeekStart.getDay());
 
+    let currentHour = new Date().getHours();
+
+    setInterval(function() {
+        let newHour = new Date().getHours();
+        if (newHour !== currentHour) {
+            location.reload();
+        }
+    }, 60000);
+
     function highlightCurrentTime() {
         let now = new Date();
         let currentHour = now.getHours();
@@ -26,8 +35,6 @@ window.onload = function() {
                     let hourCell = rows[i].getElementsByTagName('td')[0];
                     hourCell.style.backgroundColor = '';
                     hourCell.style.color = '';
-
-                    //Refresh page after there is an hour change!!
                 }
             }
         }
