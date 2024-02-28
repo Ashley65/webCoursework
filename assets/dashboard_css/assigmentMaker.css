@@ -1,5 +1,6 @@
 body {
     background-color: #f4f4f4;
+    transition: 0.3s all ease;
 }
 
 body.dark {
@@ -23,6 +24,7 @@ form {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    transition: 0.3s all ease;
 }
 
 body.dark form {
@@ -39,9 +41,34 @@ form input[type="text"], form input[type="number"], form input[type="date"], for
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #dcdcdc;
     margin-bottom: 20px;
+    background-color: #dcdcdc;
 }
+
+body.dark form input[type="text"], body.dark form input[type="number"], body.dark form input[type="date"], body.dark form textarea, body.dark form select {
+    color: #fff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+form input[type="text"]:focus, form input[type="text"]:hover,
+form input[type="number"]:focus, form input[type="number"]:hover,
+form input[type="date"]:focus, form input[type="date"]:hover,
+form textarea:focus, form textarea:hover,
+form select:focus, form select:hover {
+    border-color: #0c7db1;
+}
+
+body.dark form input[type="text"]:focus, body.dark form input[type="text"]:hover,
+body.dark form input[type="number"]:focus, body.dark form input[type="number"]:hover,
+body.dark form input[type="date"]:focus, body.dark form input[type="date"]:hover,
+body.dark form textarea:focus, body.dark form textarea:hover,
+body.dark form select:focus, body.dark form select:hover {
+    border-color: #0c7db1;
+}
+
+
 
 form input[type="submit"] {
     padding: 10px 20px;
@@ -50,6 +77,7 @@ form input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s all ease;
 }
 
 form input[type="submit"]:hover {
