@@ -1,29 +1,61 @@
 <?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//
-//
-//
-//?>
+session_start();
+include "connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+// get the assignment details from the assignment table where the student is enrolled in
+$stmt2 = $conn->prepare("SELECT * FROM assignment WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+$stmt2->bind_param("i", $_SESSION['id']);
+
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+
+// Initialize an empty array to hold the assignments
+$assignments = [];
+
+// Fetch all assignments the student is enrolled in along with the user details
+while($assignment = $result2->fetch_assoc()){
+    $assignments[] = $assignment;
+}
+
+// function that get all assignments for a given course
+function getCourseAssignments($course_id): array
+{
+    global $conn;
+    $assignments = []; // Initialize an empty array to hold the course assignments
+
+    // Prepare a statement to fetch all course assignments for a given course
+    $stmt = $conn->prepare("SELECT * FROM assignment WHERE courseID = ?");
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch all course assignments for the given course
+    while($assignment = $result->fetch_assoc()){
+        $assignments[] = $assignment;
+    }
+    return $assignments;
+
+}
+
+
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -38,7 +70,7 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForProfile.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigment.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -109,15 +141,30 @@
         </div>
     </div>
     <main class="main">
+        <div class="assignment">
+            <div class="assignmentTitle">
+                <h2>Assignments</h2> <!-- Display the assignments for the student -->
+            </div>
+            <div class="assignmentBody"
+                <ul>
+                    <?php foreach ($assignments as $assignment): ?>
+                        <li>
+                            <div class="assignments">
+                                <h3><?php echo $assignment['assignmentName']; ?></h3>
+                                <p><?php echo $assignment['assignmentDescription']; ?></p>
+                                <p>Due Date: <?php echo $assignment['dueDate']; ?></p>
+                                <p>Course: <?php echo $assignment['courseID']; ?></p>
 
-    </main>
+                                <a href="assignmentSubmission.php?assignmentID=<?php echo $assignment['assignmentID']; ?>">Submit Assignment</a>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     <div class="footer">
 
     </div>
-
-
-
 </div>
-<script src="index.js"></script>
 </body>
 </html>

@@ -188,7 +188,7 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                             echo "<li>";
                             echo "<a {$video['materialName']}'>{$video['materialName']}</a> - ";
                             // Load a page that will allow the user to play the video on the browser
-                            echo "<a href='videoPlayer.php?video=" . urlencode($video['material_path']) . "'>Play</a>";
+                            echo "<a href='course/videoPlayer.php?video=" . urlencode($video['material_path']) . "'>Play</a>";
                             echo "</li>";
                         }
                         echo "</ul>";

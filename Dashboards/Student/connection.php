@@ -14,3 +14,13 @@ if (!$conn){
     // This will stop the script from running and display the error
     die("Connection failed: ".mysqli_connect_error());
 }
+
+// pdo connection
+try {
+    $connPDO = new PDO("mysql:host=$severName;dbname=$dbName", $dbUsername, $dbPassword);
+    // set the PDO error mode to exception
+    $connPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+
+}

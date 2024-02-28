@@ -1,0 +1,45 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.3fr 2.6fr 0.2fr;
+    gap : 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar footer footer";
+}
+.aside{
+    grid-area: sidebar;
+
+}
+.Top-bar{
+    grid-area: header;
+}
+.mainBody {
+    display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 1fr 0.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". . . ."
+    ". assignment assignment ."
+    ". assignment assignment ."
+    ". . . .";
+    grid-area: mainBody;
+}
+.assignment {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "assignmentTitle assignmentTitle assignmentTitle"
+    "assignmentBody assignmentBody assignmentBody"
+    "assignmentBody assignmentBody assignmentBody";
+    grid-area: assignment;
+}
+.assignmentTitle { grid-area: assignmentTitle; }
+.assignmentBody { grid-area: assignmentBody; }
+.footer { grid-area: footer; }
+
