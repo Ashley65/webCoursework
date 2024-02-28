@@ -57,7 +57,6 @@ if ($result->num_rows > 0) {
 <div class="container">
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -159,7 +158,7 @@ if ($result->num_rows > 0) {
             <div class="tabsArea">
                 <div id="personal" class="tabContent">
                     <div class="card-body">
-                        <form id="formAccountSettings" method="GET" action="changeInfo.php">
+                        <form id="formAccountSettings" method="GET" action="dataChange/changeInfo.php">
                             <div class="form-row">
                                 <div class="form-group ">
                                     <label for="inputFirstName">First name</label>
@@ -192,7 +191,7 @@ if ($result->num_rows > 0) {
                 </div>
                 <div id="Security" class="tabContent" style="display: none">
                     <div class="card-body">
-                        <form id="formAccountSetting" method="get" action="changePassword.php">
+                        <form id="formAccountSetting" method="get" action="dataChange/changePassword.php">
                             <div class="form-group">
                                 <label for="currentPassword">Current Password</label>
                                 <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
@@ -216,7 +215,7 @@ if ($result->num_rows > 0) {
                 </div>
                 <div id="address" class="tabContent" style="display: none">
                     <div class="card-body">
-                        <form id="formAccountSetting" method="get" action="changeAddr.php">
+                        <form id="formAccountSetting" method="get" action="dataChange/changeAddr.php">
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
                                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">

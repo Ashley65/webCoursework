@@ -1,59 +1,59 @@
 <?php
-session_start();
-include "connection.php";
-global $conn;
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
-
-    exit;
-}
+//session_start();
+//include "connection.php";
+//global $conn;
+//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//    header("location: /aceTrain/LoginSystem/loginStudent.php");
+//
+//    exit;
+//}
 //get the user personal details
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-}else{
-    echo "No data found with id:" . $_SESSION['id'];
-
-}
-// get the assignment details from the assignment table where the student is enrolled in
-$stmt2 = $conn->prepare("SELECT * FROM assignment WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-$stmt2->bind_param("i", $_SESSION['id']);
-
-$stmt2->execute();
-$result2 = $stmt2->get_result();
-
-// Initialize an empty array to hold the assignments
-$assignments = [];
-
-// Fetch all assignments the student is enrolled in along with the user details
-while($assignment = $result2->fetch_assoc()){
-    $assignments[] = $assignment;
-}
-
-// function that get all assignments for a given course
-function getCourseAssignments($course_id): array
-{
-    global $conn;
-    $assignments = []; // Initialize an empty array to hold the course assignments
-
-    // Prepare a statement to fetch all course assignments for a given course
-    $stmt = $conn->prepare("SELECT * FROM assignment WHERE courseID = ?");
-    $stmt->bind_param("i", $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Fetch all course assignments for the given course
-    while($assignment = $result->fetch_assoc()){
-        $assignments[] = $assignment;
-    }
-    return $assignments;
-
-}
-
+//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $user = $result->fetch_assoc();
+//}else{
+//    echo "No data found with id:" . $_SESSION['id'];
+//
+//}
+//// get the assignment details from the assignment table where the student is enrolled in
+//$stmt2 = $conn->prepare("SELECT * FROM assignment WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+//$stmt2->bind_param("i", $_SESSION['id']);
+//
+//$stmt2->execute();
+//$result2 = $stmt2->get_result();
+//
+//// Initialize an empty array to hold the assignments
+//$assignments = [];
+//
+//// Fetch all assignments the student is enrolled in along with the user details
+//while($assignment = $result2->fetch_assoc()){
+//    $assignments[] = $assignment;
+//}
+//
+//// function that get all assignments for a given course
+//function getCourseAssignments($course_id): array
+//{
+//    global $conn;
+//    $assignments = []; // Initialize an empty array to hold the course assignments
+//
+//    // Prepare a statement to fetch all course assignments for a given course
+//    $stmt = $conn->prepare("SELECT * FROM assignment WHERE courseID = ?");
+//    $stmt->bind_param("i", $course_id);
+//    $stmt->execute();
+//    $result = $stmt->get_result();
+//
+//    // Fetch all course assignments for the given course
+//    while($assignment = $result->fetch_assoc()){
+//        $assignments[] = $assignment;
+//    }
+//    return $assignments;
+//
+//}
+//
 
 ?>
 
@@ -147,18 +147,22 @@ function getCourseAssignments($course_id): array
             </div>
             <div class="assignmentBody"
                 <ul>
-                    <?php foreach ($assignments as $assignment): ?>
+<!--                    --><?php //foreach ($assignments as $assignment): ?>
                         <li>
                             <div class="assignments">
-                                <h3><?php echo $assignment['assignmentName']; ?></h3>
-                                <p><?php echo $assignment['assignmentDescription']; ?></p>
-                                <p>Due Date: <?php echo $assignment['dueDate']; ?></p>
-                                <p>Course: <?php echo $assignment['courseID']; ?></p>
+<!--                                <h3>--><?php //echo $assignment['assignmentName']; ?><!--</h3>-->
+                                <h3>Assignment  Name</h3>
+<!--                                <p>--><?php //echo $assignment['assignmentDescription']; ?><!--</p>-->
+                                <p>Assignment Description : ewosgjes wginkkg gewposm  owegkml jgjosp;kmn  gogwjmeslwkgn  soegpskl g</p>
+<!--                                <p>Due Date: --><?php //echo $assignment['dueDate']; ?><!--</p>-->
+                                <p>Due Date: 2022-12-12</p>
+<!--                                <p>Course: --><?php //echo $assignment['courseID']; ?><!--</p>-->
+                                <p>Course: 1</p>
 
-                                <a href="assignmentSubmission.php?assignmentID=<?php echo $assignment['assignmentID']; ?>">Submit Assignment</a>
+                                <a href="assignmentSubmission.php?assignmentID= ?>">Submit Assignment</a>
                             </div>
                         </li>
-                    <?php endforeach; ?>
+<!--                    --><?php //endforeach; ?>
                 </ul>
             </div>
         </div>
