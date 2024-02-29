@@ -1,56 +1,39 @@
 <?php
-session_start();
-include "connection.php";
-global $conn;
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
-
-    exit;
-}
-
-//get the user personal details
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-}else{
-    echo "No data found with id:" . $_SESSION['id'];
-
-}
-//get the course details from the courses table where the student is enrolled in
-$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result2 = $stmt->get_result();
-// Initialize an empty array to hold the courses
-$courses = [];
-
-// Fetch all courses the student is enrolled in along with the user details
-while($course = $result2->fetch_assoc()){
-    $courses[] = $course;
-}
-function getCourseDetails($course_id){
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-    $stmt->bind_param("i", $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $result = $result->fetch_assoc();
-    if (0 > $result->num_rows) {
-        return $result;
-    }else{
-        return "No data found with id:" . $course_id;
-    }
-}
-
-
-
-?>
+//session_start();
+//include "connection.php";
+//global $conn;
+//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//    header("location: /aceTrain/LoginSystem/loginStudent.php");
+//
+//    exit;
+//}
+//
+////get the user personal details
+//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $user = $result->fetch_assoc();
+//}else{
+//    echo "No data found with id:" . $_SESSION['id'];
+//
+//}
+////get the course details from the courses table where the student is enrolled in
+//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result2 = $stmt->get_result();
+//// Initialize an empty array to hold the courses
+//$courses = [];
+//
+//// Fetch all courses the student is enrolled in along with the user details
+//while($course = $result2->fetch_assoc()){
+//    $courses[] = $course;
+//}
+//?>
 
 
 <! DOCTYPE html>
@@ -96,7 +79,7 @@ function getCourseDetails($course_id){
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="assignment.php">
+            <a href="assignment/assignment.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
@@ -137,17 +120,17 @@ function getCourseDetails($course_id){
         </div>
     </div>
      <div class="mainBody">
-         <?php foreach ($courses as $course):?>
+<!--         --><?php //foreach ($courses as $course):?>
              <div class="courseCard" >
                  <div class="courseBody">
-                     <h2><?php echo $courses[0]['course_name']; ?></h2>
-                     <p><?php echo $courses[0]['course_description']; ?></p>
-                     <a href="course_info.php?course_id=<?php echo $courses[0]['course_id']; ?>">Go to Course</a>
+                     <h2><?php echo isset($courses) ? $courses[0]['course_name']: 'courseName '; ?></h2>
+                     <p><?php echo isset($courses) ? $courses[0]['course_description']: 'lodjf ijfjd osjdfj'; ?></p>
+                     <a href="course_info.php?course_id=<?php echo isset($courses) ? $courses[0]['course_id']: 'dmdkkkd'; ?>">Go to Course</a>
                  </div>
                  <div class="courseNav">
                      <div class="courseNavHeader">
                          <div id="courseNavHeaderTitle" class="courseTitle">
-                             <p><?php echo $courses[0]['course_name']; ?></p>
+                             <p><?php echo isset($courses) ? $courses[0]['course_name']: 'courses'; ?></p>
                          </div>
                             <div id="courseNavHeaderIcon" class="courseIcon">
                                 <div class="courseNavLeft">
@@ -160,7 +143,7 @@ function getCourseDetails($course_id){
                      </div>
                  </div>
              </div>
-         <?php endforeach; ?>
+<!--         --><?php //endforeach; ?>
     <div class="footer">
 
     </div>
