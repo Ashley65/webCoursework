@@ -88,10 +88,6 @@ function getCourseDetails($course_id){
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
-            <a href="dashboard.php" >
-                <span class="material-symbols-outlined">dashboard</span>
-                <h3>Dashboard</h3>
-            </a>
             <a href="profile.php" >
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
