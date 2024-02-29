@@ -7,11 +7,13 @@
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../js/theme.js"></script>
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForQuiz.css">
     <link rel="stylesheet" href="../../assets/Quiz/quizStyle.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>

@@ -1,12 +1,8 @@
-.container {
-    overflow-x: auto;
-}
-
 .calendar-full {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 50px;
+    margin-top: 8px;
     margin-left: 100px;
 }
 
@@ -266,4 +262,21 @@ body.dark #eventInput:focus {
 
 .delete-event:hover {
     color: #0c7db1;
+}
+
+.container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
