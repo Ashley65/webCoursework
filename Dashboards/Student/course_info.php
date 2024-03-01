@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "connection.php";
+include "../Student/connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
+    header("location: ../../LoginSystem/loginStudent.php");
 
     exit;
 }
@@ -44,10 +44,11 @@ function getCourseMaterials($course_id): array
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Fetch all course materials for the given course
-
+    // Fetch all course materials for the given course and exclude the ones that are videos
     while($material = $result->fetch_assoc()){
-        $materials[] = $material;
+        if($material['fileType'] != "video/mp4"){
+            $materials[] = $material;
+        }
     }
     return $materials;
 
@@ -79,6 +80,27 @@ function getCourseVideos($course_id): array
 
 }
 $course_videos = getCourseVideos($course_id); // Fetch all course videos for the given course
+
+// Get the quiz for the given course
+function getCourseQuiz($course_id): array
+{
+    global $conn;
+    $quizzes = []; // Initialize an empty array to hold the course quizzes
+
+    // Prepare a statement to fetch all quizzes for a given course
+    $stmt = $conn->prepare("SELECT * FROM quizzes WHERE Course_id = ?");
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Fetch all quizzes for the given course
+    while ($quiz = $result->fetch_assoc()) {
+        $quizzes[] = $quiz;
+    }
+    return $quizzes;
+}
+
+$course_quiz = getCourseQuiz($course_id); // Fetch all course quizzes for the given course
 
 
 
@@ -166,9 +188,6 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
 
                 </div>
             </div>
-
-
-
         </div>
     </div>
 
@@ -186,7 +205,7 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                             echo "<li>";
                             echo "<a {$video['materialName']}'>{$video['materialName']}</a> - ";
                             // Load a page that will allow the user to play the video on the browser
-                            echo "<a href='course/videoPlayer.php?video=" . urlencode($video['material_path']) . "'>Play</a>";
+                            echo "<a href='../course/videoPlayer.php?video=" . urlencode($video['materialID']) . "'>Play</a>";
                             echo "</li>";
                         }
                         echo "</ul>";
@@ -215,7 +234,20 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
 
                 <div id="Quiz" class="tabcontent" style="display: none">
                     <h3>Quiz</h3>
-                    <p>Quiz will be displayed here</p>
+                    <?php
+                    if (!empty($course_quiz)) {
+                        echo "<ul>";
+                        foreach ($course_quiz as $quiz) {
+                            echo "<li>";
+                            echo "<a {$quiz['quiz_name']}'>{$quiz['quiz_name']}</a> - ";
+                            echo "<a href='../course/quiz.php?quiz_id=" . urlencode($quiz['id']) . "'>Take Quiz</a>";
+                            echo "</li>";
+                        }
+                        echo "</ul>";
+                    } else {
+                        echo "No course quizzes found for the given course ID: " . $course_id;
+                    }
+                    ?>
                 </div>
             </div>
 

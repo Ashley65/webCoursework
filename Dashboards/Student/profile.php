@@ -3,7 +3,7 @@ session_start();
 include "connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
+    header("location: ../../LoginSystem/loginStudent.php");
 
     exit;
 }

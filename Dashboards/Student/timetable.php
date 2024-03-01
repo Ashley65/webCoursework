@@ -1,3 +1,26 @@
+<?php
+include "connection.php";
+global $conn;
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../../LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+}
+?>
+
 <! DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +36,7 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/timetable.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForProfile.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutFortimeTable.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
@@ -43,7 +66,7 @@
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="assignment.php">
+            <a href="assignment/assignment.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
@@ -84,7 +107,7 @@
             <h2 id="year-heading"></h2>
             <h2 id="week-range"></h2>
         </div>
-        <div id="timetable-container">
+        <div id="timetable-container" class="timeTable">
             <span id="prev-week" class="material-symbols-rounded">chevron_left</span>
             <span id="next-week" class="material-symbols-rounded">chevron_right</span>
             <span id="current-week" class="material-symbols-rounded">today</span>

@@ -1,7 +1,7 @@
 <?php
 global $course_id;
 session_start();
-include "../connection.php";
+include "../Student/connection.php";
 global $conn;
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -81,6 +81,8 @@ function getCourseVideos($course_id): array
 }
 $course_videos = getCourseVideos($course_id); // Fetch all course videos for the given course
 
+// fetch all the data  from the cour
+
 ?>
 
 <! DOCTYPE html>
@@ -90,16 +92,16 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Course</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../../js/script.js"></script>
-    <script src="../../../js/theme.js"></script>
-    <link rel="stylesheet" href="../../../assets/dashboard_css/dark-light.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/Dashboard.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/sidebar.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../../assets/course_css/notes.css">
-    <link rel="stylesheet" href="../../../assets/gridlayout_css/gridLayoutForCourseVideo.css">
-    <script src="../../../js/Profile.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/theme.js"></script>
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
+    <link rel="stylesheet" href="../../assets/course_css/course.css">
+    <link rel="stylesheet" href="../../assets/course_css/notes.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseVideo.css">
+    <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -117,7 +119,7 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                     <small class="textMuted">Student</small>
                 </div>
                 <div class="profile_pic">
-                    <img src="../../../assets/img/Default_pfp.png">
+                    <img src="../../assets/img/Default_pfp.png">
 
                 </div>
             </div>
@@ -126,26 +128,26 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
     <aside class="aside">
         <div class="toggle">
             <div class="logo">
-                <img src="../../../assets/img/AceTraining-logo-light-transparent.png">
+                <img src="../../assets/img/AceTraining-logo-light-transparent.png">
             </div>
             <button class="menu-btn" id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <div class="sidebar">
-            <a href="../StudentMain.php" >
+            <a href="../Student/StudentMain.php" >
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
-            <a href="../course.php" class="active">
+            <a href="../Student/course.php" class="active">
                 <span class="material-symbols-outlined">school</span>
                 <h3>Courses</h3>
             </a>
-            <a href="../calendar.php">
+            <a href="../Student/calendar.php">
                 <span class="material-symbols-outlined">event</span>
                 <h3>Calendar</h3>
             </a>
-            <a href="../profile.php">
+            <a href="../Student/profile.php">
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
@@ -196,7 +198,7 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                         </div>
 
                     </div>
-                    <script src="../../../js/notes.js" type="module"></script>
+                    <script src="../../js/notes.js" type="module"></script>
                 </div>
             </div>
             <div class="courseNav">
