@@ -1,0 +1,48 @@
+.container {  display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.2fr 2.6fr 0.12fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "aside Top-bar Top-bar"
+    "aside mainBody mainBody"
+    "aside footer footer";
+}
+
+.Top-bar {
+    grid-area: Top-bar;
+    height: 50px;
+}
+
+.aside { grid-area: aside; }
+
+.mainBody {
+    display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 2.6fr 1fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". listContainer listContainer ."
+    ". listContainer listContainer ."
+    ". . . .";
+    grid-area: mainBody;
+}
+
+.listContainer {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "listHeader listHeader listHeader"
+    "list list list"
+    "list list list";
+    grid-area: listContainer;
+}
+
+.listHeader { grid-area: listHeader; }
+
+.list { grid-area: list; }
+
+.footer { grid-area: footer; }

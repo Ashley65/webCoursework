@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
     <link rel="stylesheet" href="../../assets/course_css/course.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigmentMaker.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/assigmentMaker.css">
+    <link rel="stylesheet" href="stylesheet/assigmentMaker.css">
     <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
