@@ -11,7 +11,28 @@
     box-shadow: var(--box-shadow);
     align-items: center;
     justify-content: center;
+}
 
+.profileBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary {
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #0c7db1;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.btn-primary:hover {
+    background-color: #9bcaee;
+    color: #000;
 }
 
 .profileInfo{
@@ -42,12 +63,6 @@
     text-align: left;
 }
 
-.profileInfo h4{
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-dark);
-}
-
 .profileInfo p{
     font-size: 0.8rem;
     font-weight: 400;
@@ -62,116 +77,8 @@
     margin: 0.5rem 0;
 }
 
-
-
-.card-body{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 0 1rem;
-}
-
-.card-body h1{
-    font-size: 1.5rem;
+.header {
     font-weight: 600;
-    color: var(--color-dark);
-}
-
-.row{
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 0 1rem;
-}
-
-
-
-.ActionButton button {
-    position: relative;
-    width: 11rem;
-    height: 3rem;
-    border: none;
-    border-radius: 3rem;
-    cursor: pointer;
-    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    font-size: 1.2rem;
-    font-weight: 550;
-    font-family: sans-serif;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    gap: 10px;
-
-}
-.ActionButton button:hover {
-    background: #315cfd;
-    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-    color: white;
-    font-size: 1.3rem;
-
-}
-.ActionButton button:before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    border-radius: 3rem;
-    width: 100%;
-    height: 100%;
-    padding: 2px;
-    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-    z-index: -1;
-}
-.ActionButton {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 0 1rem;
-    margin: 1rem 0;
-
-}
-
-.form-control{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 0 1rem;
-}
-.form-row{
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 0 1rem;
-}
-.form-group input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #0c7db1;
-    border-radius: 5px;
-    box-sizing: border-box;
-    opacity: 0.9;
-    transition: all 0.5s ease;
-}
-.form-group input:focus {
-    border: 1px solid #0c7db1;
-    opacity: 1;
-    box-shadow: 0 0 10px #0c7db1;
 }
 
 .tabSelection{
@@ -182,6 +89,7 @@
     border-bottom:  1px solid;
     border-bottom-color: var(--border-colors);
 }
+
 .tabSelection button{
     width: 100%;
     padding: 12px 20px;
@@ -189,49 +97,85 @@
     border-radius: 5px;
     box-sizing: border-box;
     opacity: 0.9;
-    transition: all 0.5s ease;
+    background-color: #3f3f3f;
+    color: #fff;
+    border: 2px solid #3f3f3f;
+    cursor: pointer;
+}
+
+.tabSelection button:hover {
+    border: 2px solid #0c7db1;
 }
 
 .tabSelection button:focus {
-    border: 1px solid #0c7db1;
-    opacity: 1;
-    box-shadow: 0 0 10px #0c7db1;
+    background-color: #0c7db1;
+    border: 2px solid #0c7db1;
 }
 
-.mainProfile{
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    box-shadow: var(--box-shadow);
+.tabSelection button.active {
+    background-color: #0c7db1;
+    border: 2px solid #0c7db1;
+}
 
-    margin: 20px;
-
-
-    padding: 5px;
-    border: 1px solid;
-    border-color: var(--border-colors);
+.mainProfile {
+    font-size: 1.3rem;
+    font-weight: 400;
+    background-color: #fff;
+    border: none;
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    transition: 0.3s all ease;
 }
 
+body.dark .mainProfile {
+    background-color: #1e1e1e;
+    color: #fff;
+}
 
+.card-body {
+    padding: 20px;
+}
 
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-/*.container * {*/
-/*    border: 1px solid #0000a9;*/
-/*    position: relative;*/
-/*}*/
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 20px;
+    background-color: #dcdcdc;
+}
 
-/*.container *:after {*/
-/*    content:attr(class);*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    display: grid;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
+body.dark .form-group input {
+    color: #fff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.form-group input:focus, .form-group input:hover {
+    border-color: #0c7db1;
+}
+
+body.dark .form-group input:focus, body.dark .form-group input:hover {
+    border-color: #0c7db1;
+}
+
+.ActionButton button {
+    padding: 10px 20px;
+    background-color: #0c7db1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.ActionButton button:hover {
+    background-color: #9bcaee;
+    color: #000;
+}

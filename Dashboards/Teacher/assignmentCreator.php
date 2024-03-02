@@ -88,11 +88,11 @@
                 <div class="assignment">
                     <form action="assignmentPost.php" method="post">
                         <label for="assignment_name">Assignment Name</label>
-                        <input type="text" id="assignment_name" name="assignment_name">
+                        <input type="text" id="assignment_name" name="assignment_name" placeholder="Assignment Name">
                         <label for="course_id">Course ID</label>
-                        <input type="text" id="course_id" name="course_id">
+                        <input type="text" id="course_id" name="course_id" placeholder="Course ID">
                         <label for="instructor_id">Instructor ID</label>
-                        <input type="text" id="instructor_id" name="instructor_id">
+                        <input type="text" id="instructor_id" name="instructor_id" placeholder="Instructor ID">
                         <label for="assignment_type">Assignment Type</label>
                         <select id="assignment_type" name="assignment_type">
                             <option value="Homework">Homework</option>
@@ -100,9 +100,9 @@
                             <option value="Project">Project</option>
                         </select>
                         <label for="assignment_points">Assignment Points</label>
-                        <input type="number" id="assignment_points" name="assignment_points">
+                        <input type="number" id="assignment_points" name="assignment_points" placeholder="Assignment Points">
                         <label for="assignment_description">Assignment Description</label>
-                        <textarea id="assignment_description" name="assignment_description"></textarea>
+                        <textarea id="assignment_description" name="assignment_description" placeholder="Assignment Description"></textarea>
                         <label for="assignment_due_date">Due Date</label>
                         <input type="date" id="assignment_due_date" name="assignment_due_date">
                         <input type="submit" value="Create">

@@ -43,7 +43,7 @@
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="assignment.php">
+            <a href="assignment/assignment.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>

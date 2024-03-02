@@ -28,7 +28,6 @@
     ". . .";
     grid-area: main;
 }
-.header { grid-area: header; }
 .sideProfile {
     display: grid;
     grid-template-columns: 0.2fr [gap] 1.8fr 1fr;
@@ -44,16 +43,19 @@
 .mainProfile {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.2fr 1.8fr 1fr;
+    grid-template-rows: 0.2fr 0.2fr 1.6fr 1fr; /* Add an additional row for the header */
     gap: 0px 0px;
     grid-template-areas:
+    "header header header" /* This is the new header row */
     "tabSelection tabSelection tabSelection"
     "tabsArea tabsArea tabsArea"
     "tabsArea tabsArea tabsArea";
     justify-items: stretch;
     grid-area: main-profile;
 }
-
+.header {
+    grid-area: header;
+}
 .tabsArea {
 
     grid-area: tabsArea;
