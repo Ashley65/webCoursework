@@ -55,7 +55,6 @@
     <div class="Top-bar">
 
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>

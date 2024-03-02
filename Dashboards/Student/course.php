@@ -1,39 +1,39 @@
 <?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-////get the course details from the courses table where the student is enrolled in
-//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result2 = $stmt->get_result();
-//// Initialize an empty array to hold the courses
-//$courses = [];
-//
-//// Fetch all courses the student is enrolled in along with the user details
-//while($course = $result2->fetch_assoc()){
-//    $courses[] = $course;
-//}
-//?>
+session_start();
+include "connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../../LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+//get the course details from the courses table where the student is enrolled in
+$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result2 = $stmt->get_result();
+// Initialize an empty array to hold the courses
+$courses = [];
+
+// Fetch all courses the student is enrolled in along with the user details
+while($course = $result2->fetch_assoc()){
+    $courses[] = $course;
+}
+?>
 
 
 <! DOCTYPE html>
@@ -120,7 +120,7 @@
         </div>
     </div>
      <div class="mainBody">
-<!--         --><?php //foreach ($courses as $course):?>
+         <?php foreach ($courses as $course):?>
              <div class="courseCard" >
                  <div class="courseBody">
                      <h2><?php echo isset($courses) ? $courses[0]['course_name']: 'courseName '; ?></h2>
@@ -143,7 +143,7 @@
                      </div>
                  </div>
              </div>
-<!--         --><?php //endforeach; ?>
+         <?php endforeach; ?>
     <div class="footer">
 
     </div>
