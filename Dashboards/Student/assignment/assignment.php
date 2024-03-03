@@ -44,7 +44,7 @@
     <title>Student Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../../js/script.js"></script>
-    <script src="../../../js/theme.js"></script>
+    <script src="../../../js/assignmentTheme.js"></script>
     <link rel="stylesheet" href="../../../assets/dashboard_css/dark-light.css">
     <link rel="stylesheet" href="../../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../../assets/dashboard_css/sidebar.css">
