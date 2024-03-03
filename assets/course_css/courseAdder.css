@@ -1,7 +1,23 @@
+.courseCard {
+    background-color: #ffffff;
+    border: none;
+    padding: 20px;
+    width: 400px;
+}
+
+body.dark .courseCard {
+    background-color: #1e1e1e;
+    border: none;
+    padding: 20px;
+}
+
+.courseNav {
+    padding-bottom: 10px;
+}
+
 .fileAdderBody {
-   display: flex;
+    display: flex;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .fileAdderBody h2 {
@@ -13,31 +29,123 @@
 }
 
 .fileAdderBody form {
-    display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: center;
-    justify-content: center;
     margin-top: 20px;
+    width: 100%;
 }
 
 .fileAdderBody form input {
     outline: 0;
-    border: 1px solid var(--color-info-dark);
-    border-radius: 5px;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 10px;
     box-sizing: border-box;
     transition: 0.3s;
     font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
-textarea{
+
+body.dark .fileAdderBody form input {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.fileAdderBody form input:hover, .fileAdderBody form input:focus,
+body.dark .fileAdderBody form input:hover, body.dark .fileAdderBody form input:focus{
+    border-color: #0c7db1;
+}
+
+textarea {
     height: 80px;
-    padding: 10px 20px;
-    border: 1px solid var(--color-info-dark);
+    padding: 10px 10px;
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
+    max-width: 100%;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    transition: all ease 0.3s;
+    margin-bottom: 10px;
+}
 
+body.dark textarea {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
 
+textarea:hover, textarea:focus, body.dark textarea:hover, body.dark textarea:focus{
+    border-color: #0c7db1;
+}
+
+.file {
+    margin-bottom: 15px;
+}
+
+.custom-file-button {
+    padding: 10px;
+    background-color: #0c7db1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all ease 0.3s;
+}
+
+.custom-file-button:hover {
+    background-color: #9bcaee;
+    color: #000000;
+}
+
+.submitBtn {
+    background-color: #0c7db1 !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition: all ease 0.3s !important;
+}
+
+.submitBtn:hover {
+    background-color: #9bcaee !important;
+    color: #000000 !important;
+}
+
+.course-videos-btn, .course-materials-btn {
+    background-color: #3f3f3f;
+    color: #ffffff;
+}
+
+.course-videos-btn:hover {
+    background-color: #0c7db1;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.course-materials-btn:hover {
+    background-color: #0c7db1;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.button-focused {
+    background-color: #0c7db1;
+    color: #ffffff;
+}
+
+.button-focused:hover {
+    background-color: #0c7db1;
+    cursor: default;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: right;
 }
