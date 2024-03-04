@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="../../assets/course_css/courseAdder.css">
     <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseAdder.css">
     <script src="../../js/Profile.js"></script>
+    <script src="../../js/courseAdder.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -108,73 +109,86 @@ if ($result->num_rows > 0) {
         <div class="courseCard">
             <div class="courseNav">
                 <div class="course-videos">
-                    <button class="course-videos-btn tabsBtn" onclick="openPage(event, 'videos')" id="defaultTab">
+                    <button class="course-videos-btn" onclick="openPage(event, 'videos')" id="defaultTab">
                         <span class="material-symbols-outlined">video_library</span>
                         Videos
                     </button>
                 </div>
                 <div class="course-materials">
-                    <button class="course-materials-btn tabsBtn" onclick="openPage(event, 'materials')">
+                    <button class="course-materials-btn" onclick="openPage(event, 'materials')">
                         <span class="material-symbols-outlined">book</span>
                         Materials
                     </button>
                 </div>
             </div>
             <div class="fileAdderBody">
-                <div class="tile">
-                    <h2>Add Material</h2>
-                </div>
                 <div id="materials" class="addMaterial">
-                    <form class="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
-                       <div class="courseID">
-                           <label for="course_id">Course ID:
-                                <input type="text" name="course_id">
-                           </label>
-                       </div>
+                    <form class="materialsUploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+                        <div class="tile">
+                            <h2>Add Material</h2>
+                        </div>
+                        <div class="courseID">
+                            <label for="course_id">Course ID:
+                                <input type="text" name="course_id" placeholder="Course ID">
+                            </label>
+                        </div>
                         <div class="fileName">
                             <label for="material_name">Material Name:
-                                <input type="text" name="material_name">
+                                <input type="text" name="material_name" placeholder="Material Name">
                             </label>
                         </div>
                         <div class="description">
                             <label for="description">Description:
-                                <textarea name="description"></textarea>
+                                <textarea name="description" placeholder="Description"></textarea>
                             </label>
                         </div>
                         <div class="file">
-                            <label for="file">Select File:
-                                <input type="file" name="file">
-                            </label>
+                            <div>
+                                <label for="file">Select File:</label>
+                            </div>
+                            <div>
+                                <input type="file" name="file" class="hidden-file-input">
+                                <button class="custom-file-button">Choose File</button>
+                                <span class="file-name"></span>
+                            </div>
                         </div>
                         <div class="submit">
-                            <input type="submit" value="Upload" name="submit">
+                            <input class="submitBtn" type="submit" value="Upload" name="submit">
                         </div>
                     </form>
                 </div>
-                <div id="videos" class="addMaterial" style="display: none">
-                    <form class="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
-                       <div class="courseID">
+                <div id="videos" class="addVideo">
+                    <form class="videosUploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+                        <div class="tile">
+                            <h2>Add Video</h2>
+                        </div>
+                        <div class="courseID">
                            <label for="course_id">Course ID:
-                                <input type="text" name="course_id">
+                                <input type="text" name="course_id" placeholder="Course ID">
                            </label>
                           </div>
                         <div class="fileName">
                             <label for="material_name">Video Name:
-                                <input type="text" name="material_name">
+                                <input type="text" name="material_name" placeholder="Video Name">
                             </label>
                         </div>
                         <div class="description">
                             <label for="description">Description:
-                                <textarea name="description"></textarea>
+                                <textarea name="description" placeholder="Description"></textarea>
                             </label>
                         </div>
                         <div class="file">
-                            <label for="file">Select File:
-                                <input type="file" name="file">
-                            </label>
+                            <div>
+                                <label for="file">Select File:</label>
+                            </div>
+                            <div>
+                                <input type="file" name="file" class="hidden-file-input">
+                                <button class="custom-file-button">Choose File</button>
+                                <span class="file-name"></span>
+                            </div>
                         </div>
                         <div class="submit">
-                            <input type="submit" value="Upload" name="submit">
+                            <input class="submitBtn" type="submit" value="Upload" name="submit">
                         </div>
                     </form>
                 </div>

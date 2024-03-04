@@ -107,14 +107,11 @@
     border: 2px solid #0c7db1;
 }
 
-.tabSelection button:focus {
-    background-color: #0c7db1;
-    border: 2px solid #0c7db1;
-}
-
 .tabSelection button.active {
     background-color: #0c7db1;
     border: 2px solid #0c7db1;
+    cursor: default;
+
 }
 
 .mainProfile {
