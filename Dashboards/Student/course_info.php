@@ -153,7 +153,7 @@ $course_quiz = getCourseQuiz($course_id); // Fetch all course quizzes for the gi
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="assignment/assignment.php">
+            <a href="../assignment/assignment.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
