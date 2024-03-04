@@ -1,0 +1,116 @@
+.enrolmentFull {
+    background-color: #ffffff;
+    border: none;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 7px;
+    transition: all ease 0.3s;
+}
+
+body.dark .enrolmentFull {
+    background-color: #1e1e1e;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3f3f3f;
+}
+
+body.dark .tabs {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.newStudentBtn, .enrollmentBtn {
+    background-color: #3f3f3f;
+    color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    width: 130px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 0.3s;
+}
+
+.newStudentBtn:hover, .enrollmentBtn:hover {
+    background-color: #0c7db1;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.enrolmentHeader h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+.enrolmentForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.enrolmentForm input, .newStudentForm input{
+    outline: 0;
+    width: 100%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+body.dark .enrolmentForm input, body.dark .newStudentForm input{
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.enrolmentForm input:hover, .enrolmentForm input:focus,
+body.dark .enrolmentForm input:hover, body.dark .enrolmentForm input:focus,
+.newStudentForm input:hover, .newStudentForm input:focus,
+body.dark .newStudentForm input:hover, body.dark .newStudentForm input:focus {
+    border-color: #0c7db1;
+}
+
+.enrolmentForm .submit, body.dark .enrolmentForm .submit,
+.newStudentForm .submit, body.dark .newStudentForm .submit {
+    margin-top: 10px;
+    background-color: #0c7db1;
+    color: #ffffff;
+    border: none;
+    transition: all ease 0.3s;
+}
+
+.enrolmentForm .submit:hover, body.dark .enrolmentForm .submit:hover,
+.newStudentForm .submit:hover, body.dark .newStudentForm .submit:hover {
+    background-color: #9bcaee;
+    color: #000000;
+}
+
+#enrolmentForm {
+    display: none;
+}
+
+.activeBtn {
+    background-color: #0c7db1;
+    color: #ffffff;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: right;
+}

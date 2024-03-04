@@ -1,7 +1,7 @@
 <?php
 
 // define the base url
-const BASE_URL = "http://localhost:63342/aceTrain";
+const BASE_URL = "http://localhost:63342/webCoursework";
 global $conn;
 include("../config/connection.php");
 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
 
 
                 // Redirect to the dashboard
-                header("Location: ".BASE_URL. "/dashboards/Student/dashboard.php");
+                header("Location: ".BASE_URL. "/dashboards/Student/StudentMain.php");
                 session_write_close();
             } else {
                 echo "<script>alert('Invalid password')</script>";

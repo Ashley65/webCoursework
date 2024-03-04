@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Execute the statement
         if ($stmt->execute()) {
-            header("Location: ../dashboards/Student/dashboard.php");
+            header("Location: ../dashboards/Student/StudentMain.php");
         } else {
             echo "Failed to register. Please try again.";
             echo "<br>";

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt2->execute();
 
                 // Redirect to the dashboard
-                header("Location: /aceTrain/dashboards/Teacher/enrollment.php");
+                header("Location: /aceTrain/dashboards/Teacher/enrolment.php");
                 session_write_close();
             } else {
                 echo "<script>alert('No user ID found for the username: " . $_POST['username'] . "')</script>";
