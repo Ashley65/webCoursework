@@ -77,3 +77,44 @@
         grid-area: main;
     }
 }
+
+
+#aboutBox {
+    position: fixed;
+    top: 300px;
+    left: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 40px;
+    transition: 0.3s ease all;
+}
+
+body.dark #aboutBox {
+    background-color: #1e1e1e;
+}
+
+#aboutBox h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#aboutBox h2 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#aboutBox h1, #aboutBox h2 {
+    text-align: center;
+    color: #000000;
+    transition: 0.3s ease all;
+}
+
+body.dark #aboutBox h1, body.dark #aboutBox h2 {
+    color: #ffffff;
+}

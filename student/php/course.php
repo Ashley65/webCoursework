@@ -41,21 +41,16 @@ while($course = $result2->fetch_assoc()){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Course</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../js/script.js"></script>
-    <script src="../../js/theme.js"></script>
-    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../assets/course_css/courseAdder.css">
-    <link rel="stylesheet" href="../../assets/course_css/courseCards.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourse.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourse.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="../../overall/javaScript/script.js"></script>
+    <script src="../../overall/javaScript/theme.js"></script>
+    <link rel="stylesheet" href="../../overall/styleSheets/dark-light.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/dashboard.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/sidebar.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/topBar.css">
+    <link rel="stylesheet" href="../styleSheets/course.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
 </head>
 <body>
 <div class="container">
@@ -70,7 +65,7 @@ while($course = $result2->fetch_assoc()){
 
         </div>
         <div class="sidebar">
-            <a href="StudentMain.php" >
+            <a href="studentMain.php" >
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
@@ -82,7 +77,7 @@ while($course = $result2->fetch_assoc()){
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="../assignment/assignment.php">
+            <a href="assignment.php">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
@@ -93,7 +88,8 @@ while($course = $result2->fetch_assoc()){
             <a href="calendar.php">
                 <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Calendar</h3>
-            <a href="../../LoginSystem/logout.php">
+            </a>
+            <a href="../../overall/loginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
             </a>
@@ -102,7 +98,6 @@ while($course = $result2->fetch_assoc()){
     </aside>
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -128,7 +123,7 @@ while($course = $result2->fetch_assoc()){
                  <div class="courseBody">
                      <h2><?php echo isset($courses) ? $courses[0]['course_name']: 'courseName '; ?></h2>
                      <p><?php echo isset($courses) ? $courses[0]['course_description']: 'lodjf ijfjd osjdfj'; ?></p>
-                     <a href="course_info.php?course_id=<?php echo isset($courses) ? $courses[0]['course_id']: 'dmdkkkd'; ?>">Go to Course</a>
+                     <a href="courseInfo.php?course_id=<?php echo isset($courses) ? $courses[0]['course_id']: 'dmdkkkd'; ?>">Go to Course</a>
                  </div>
                  <div class="courseNav">
                      <div class="courseNavHeader">

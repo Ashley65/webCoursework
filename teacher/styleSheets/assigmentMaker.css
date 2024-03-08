@@ -1,0 +1,131 @@
+.container {  display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.2fr 2.6fr 0.12fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "aside Top-bar Top-bar"
+    "aside mainBody mainBody"
+    "aside footer footer";
+}
+
+.Top-bar { grid-area: Top-bar; }
+
+.aside { grid-area: aside; }
+
+.mainBody {  display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 1fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". . . ."
+    ". assignmentMakers assignmentMakers ."
+    ". assignmentMakers assignmentMakers ."
+    ". . . .";
+    grid-area: mainBody;
+}
+
+.assignmentMakers {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "assignment_header assignment_header assignment_header"
+    "assignment assignment assignment"
+    "assignment assignment assignment";
+    grid-area: assignmentMakers;
+}
+
+.assignment_header { grid-area: assignment_header; }
+
+.assignment { grid-area: assignment; }
+
+.footer { grid-area: footer; }
+
+
+body {
+    background-color: #f4f4f4;
+    transition: 0.3s all ease;
+}
+
+body.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.container {
+    width: 80%;
+}
+
+h1 {
+    margin-top: -200px;
+    text-align: center;
+    padding: 20px 0;
+    font-weight: 500;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    transition: 0.3s all ease;
+}
+
+body.dark form {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"], form input[type="number"], form input[type="date"], form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 20px;
+    background-color: #dcdcdc;
+}
+
+body.dark form input[type="text"], body.dark form input[type="number"], body.dark form input[type="date"], body.dark form textarea, body.dark form select {
+    color: #fff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+form input[type="text"]:focus, form input[type="text"]:hover,
+form input[type="number"]:focus, form input[type="number"]:hover,
+form input[type="date"]:focus, form input[type="date"]:hover,
+form textarea:focus, form textarea:hover,
+form select:focus, form select:hover {
+    border-color: #0c7db1;
+}
+
+body.dark form input[type="text"]:focus, body.dark form input[type="text"]:hover,
+body.dark form input[type="number"]:focus, body.dark form input[type="number"]:hover,
+body.dark form input[type="date"]:focus, body.dark form input[type="date"]:hover,
+body.dark form textarea:focus, body.dark form textarea:hover,
+body.dark form select:focus, body.dark form select:hover {
+    border-color: #0c7db1;
+}
+
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #0c7db1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #9bcaee;
+    color: #000;
+}

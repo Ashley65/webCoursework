@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
 
 
                 // Redirect to the dashboard
-                header("Location: ".BASE_URL. "/dashboards/Student/studentMain.php");
+                header("Location: ".BASE_URL. "Location: ../../student/php/studentMain.php");
                 session_write_close();
             } else {
                 echo "<script>alert('Invalid password')</script>";

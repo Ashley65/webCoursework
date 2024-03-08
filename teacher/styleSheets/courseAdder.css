@@ -1,0 +1,222 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.3fr 2.6fr 0.2fr;
+    gap : 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar footer footer";
+}
+
+.aside{
+    grid-area: sidebar;
+
+}
+.Top-bar {
+    grid-area: header;
+}
+.main {
+    display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 1fr 0.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". . . ."
+    ". courseCard courseCard ."
+    ". courseCard courseCard ."
+    ". . . .";
+    grid-area: main;
+}
+
+
+.courseCard {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "courseNav courseNav courseNav"
+    "fileAdderBody fileAdderBody fileAdderBody"
+    "fileAdderBody fileAdderBody fileAdderBody";
+    grid-area: courseCard;
+}
+.courseNav {
+    display: grid;
+    grid-template-columns: 0.5fr .5fr .5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "course-videos course-materials course-assignments ."
+    "course-videos course-materials course-assignments ."
+    "course-videos course-materials course-assignments .";
+    grid-area: courseNav;
+}
+.course-videos { grid-area: course-videos; }
+.course-materials { grid-area: course-materials; }
+.course-assignments { grid-area: course-assignments; }
+.fileAdderBody { grid-area: fileAdderBody; }
+.footer { grid-area: footer; }
+
+
+.courseCard {
+    background-color: #ffffff;
+    border: none;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+body.dark .courseCard {
+    background-color: #1e1e1e;
+    border: none;
+    padding: 20px;
+}
+
+.courseNav {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3f3f3f;
+}
+
+body.dark .courseNav {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.fileAdderBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.fileAdderBody h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    row-gap: 2rem
+}
+
+.fileAdderBody form {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.fileAdderBody form input {
+    outline: 0;
+    width: 100%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+body.dark .fileAdderBody form input {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.fileAdderBody form input:hover, .fileAdderBody form input:focus,
+body.dark .fileAdderBody form input:hover, body.dark .fileAdderBody form input:focus{
+    border-color: #0c7db1;
+}
+
+textarea {
+    height: 80px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    transition: all ease 0.3s;
+    margin-bottom: 10px;
+}
+
+body.dark textarea {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+textarea:hover, textarea:focus, body.dark textarea:hover, body.dark textarea:focus{
+    border-color: #0c7db1;
+}
+
+.file {
+    margin-bottom: 15px;
+}
+
+.custom-file-button {
+    padding: 10px;
+    background-color: #0c7db1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all ease 0.3s;
+}
+
+.custom-file-button:hover {
+    background-color: #9bcaee;
+    color: #000000;
+}
+
+.submitBtn {
+    background-color: #0c7db1 !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition: all ease 0.3s !important;
+}
+
+.submitBtn:hover {
+    background-color: #9bcaee !important;
+    color: #000000 !important;
+}
+
+.course-videos-btn, .course-materials-btn {
+    background-color: #3f3f3f;
+    color: #ffffff;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px;
+}
+
+.course-materials-btn:hover, .course-videos-btn:hover {
+    background-color: #0c7db1;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.button-focused {
+    background-color: #0c7db1;
+    color: #ffffff;
+}
+
+.button-focused:hover {
+    background-color: #0c7db1;
+    cursor: default;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: right;
+}
