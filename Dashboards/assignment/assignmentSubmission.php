@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "connection.php";
+include "../Student/connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("location: /aceTrain/LoginSystem/loginStudent.php");
@@ -39,8 +39,6 @@ $result2 = $stmt2->get_result();
 // Fetch all assignments the student is enrolled in along with the user details
 if( $result2->num_rows > 0){
     $assignments = $result2->fetch_assoc();
-     echo "Assignment Name: " . $assignments['assignmentName'] . "<br>";
-    echo "Assignment Description: " . $assignments['assignmentDescription'];
 } else {
     echo "No assignment found with ID: " . $assignmentID;
 }
@@ -62,16 +60,16 @@ if( $result2->num_rows > 0){
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Student Dashboard || Assignment Submission</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../../js/script.js"></script>
-    <script src="../../../js/theme.js"></script>
-    <link rel="stylesheet" href="../../../assets/dashboard_css/dark-light.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/Dashboard.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/sidebar.css">
-    <link rel="stylesheet" href="../../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../../assets/course_css/courseAdder.css">
-    <link rel="stylesheet" href="../../../assets/gridlayout_css/gridLayoutForAssigment.css">
-    <script src="../../../js/Profile.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/theme.js"></script>
+    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
+    <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
+    <link rel="stylesheet" href="../../assets/course_css/course.css">
+    <link rel="stylesheet" href="../../assets/course_css/courseAdder.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigment.css">
+    <script src="../../js/Profile.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -89,7 +87,7 @@ if( $result2->num_rows > 0){
                     <small class="textMuted">Student</small>
                 </div>
                 <div class="profile_pic">
-                    <img src="../../../assets/img/Default_pfp.png">
+                    <img src="../../assets/img/Default_pfp.png">
                 </div>
             </div>
         </div>
@@ -97,7 +95,7 @@ if( $result2->num_rows > 0){
     <aside class="aside">
         <div class="toggle">
             <div class="logo">
-                <img src="../../../assets/img/AceTraining-logo-light-transparent.png">
+                <img src="../../assets/img/AceTraining-logo-light-transparent.png">
             </div>
             <button class="menu-btn" id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
@@ -105,15 +103,15 @@ if( $result2->num_rows > 0){
 
         </div>
         <div class="sidebar">
-            <a href="../StudentMain.php" >
+            <a href="../Student/StudentMain.php" >
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
-            <a href="../profile.php" >
+            <a href="../Student/profile.php" >
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="../course.php" >
+            <a href="../Student/course.php" >
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
@@ -121,15 +119,15 @@ if( $result2->num_rows > 0){
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
-            <a href="../timetable.php">
+            <a href="../Student/timetable.php">
                 <span class="material-symbols-outlined">today</span>
                 <h3>Timetable</h3>
             </a>
-            <a href="../calendar.php">
+            <a href="../Student/calendar.php">
                 <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Calendar</h3>
 
-            <a href="../../../LoginSystem/logout.php">
+            <a href="../../LoginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
             </a>
@@ -157,7 +155,9 @@ if( $result2->num_rows > 0){
                 <h2>Assignment Submission</h2>
             </div>
             <div class="assignmentSubmissionBody">
-                <form action="assignmentSubmission.php" method="post" enctype="multipart/form-data">
+                <form action="Submission.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="assignmentID" value="<?php echo $assignmentID;?>">
+                    <input type="hidden" name="studentID" value="<?php echo $_SESSION['id'];?>">
                     <div class="form-group
                     <label for="assignment_submission">Upload Assignment</label>
                     <input type="file" id="assignment_submission" name="assignment_submission">

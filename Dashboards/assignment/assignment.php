@@ -1,13 +1,12 @@
 <?php
 session_start();
-include "connection.php";
+include "../Student/connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: ../../LoginSystem/loginStudent.php");
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
 
     exit;
 }
-
 //get the user personal details
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $_SESSION['id']);
@@ -20,21 +19,22 @@ if ($result->num_rows > 0) {
     echo "No data found with id:" . $_SESSION['id'];
 
 }
-//get the course details from the courses table where the student is enrolled in
-$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-$stmt->bind_param("i", $_SESSION['id']);
+// get the assignment details from the assignment table where the student is enrolled in
+$stmt2 = $conn->prepare("SELECT assignment.*, assignmentUpload.* FROM assignment LEFT JOIN assignmentUpload ON assignment.assignmentID = assignmentUpload.assID WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?) AND (assignmentUpload.assID IS NULL )");
+$stmt2->bind_param("i", $_SESSION['id']);
 
-$stmt->execute();
-$result2 = $stmt->get_result();
-// Initialize an empty array to hold the courses
-$courses = [];
+$stmt2->execute();
+$result2 = $stmt2->get_result();
 
-// Fetch all courses the student is enrolled in along with the user details
-while($course = $result2->fetch_assoc()){
-    $courses[] = $course;
+// Initialize an empty array to hold the assignments
+$assignments = [];
+
+// Fetch all assignments the student is enrolled in along with the user details
+while($assignment = $result2->fetch_assoc()){
+    $assignments[] = $assignment;
 }
-?>
 
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -49,9 +49,8 @@ while($course = $result2->fetch_assoc()){
     <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
     <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourse.css">
-
+    <link rel="stylesheet" href="../../assets/course_css/assigment.css">
+    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForAssigment.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -67,29 +66,30 @@ while($course = $result2->fetch_assoc()){
 
         </div>
         <div class="sidebar">
-            <a href="StudentMain.php" >
+            <a href="../Student/StudentMain.php" >
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
-            <a href="profile.php" >
+            <a href="../Student/profile.php" >
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="course.php" class="active">
+            <a href="../Student/course.php" >
                 <span class="material-symbols-outlined">book</span>
                 <h3>Course</h3>
             </a>
-            <a href="../assignment/assignment.php">
+            <a href="assignment.php" class="active">
                 <span class="material-symbols-outlined">assignment</span>
                 <h3>Assignment</h3>
             </a>
-            <a href="timetable.php">
+            <a href="../Student/timetable.php">
                 <span class="material-symbols-outlined">today</span>
                 <h3>Timetable</h3>
             </a>
-            <a href="calendar.php">
+            <a href="../Student/calendar.php">
                 <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Calendar</h3>
+
             <a href="../../LoginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
@@ -99,7 +99,7 @@ while($course = $result2->fetch_assoc()){
     </aside>
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
+
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -119,32 +119,37 @@ while($course = $result2->fetch_assoc()){
 
         </div>
     </div>
-     <div class="mainBody">
-         <?php foreach ($courses as $course):?>
-             <div class="courseCard" >
-                 <div class="courseBody">
-                     <h2><?php echo isset($courses) ? $courses[0]['course_name']: 'courseName '; ?></h2>
-                     <p><?php echo isset($courses) ? $courses[0]['course_description']: 'lodjf ijfjd osjdfj'; ?></p>
-                     <a href="course_info.php?course_id=<?php echo isset($courses) ? $courses[0]['course_id']: 'dmdkkkd'; ?>">Go to Course</a>
-                 </div>
-                 <div class="courseNav">
-                     <div class="courseNavHeader">
-                         <div id="courseNavHeaderTitle" class="courseTitle">
-                             <p><?php echo isset($courses) ? $courses[0]['course_name']: 'courses'; ?></p>
-                         </div>
-                            <div id="courseNavHeaderIcon" class="courseIcon">
-                                <div class="courseNavLeft">
-                                    <button class="material-symbols-outlined">arrow_back</button>
-                                </div>
-                                <div class="courseNavRight">
-                                    <button class="material-symbols-outlined">arrow_forward</button>
-                                </div>
-                            </div>
-                     </div>
-                 </div>
-             </div>
-         <?php endforeach; ?>
+    <main class="main">
+        <div class="assignment">
+            <div class="assignmentTitle">
+                <h2>Assignments</h2> <!-- Display the assignments for the student -->
+            </div>
+            <div class="assignmentBody"
+
+                <ul>
+                    <?php foreach ($assignments as $assignment): ?>
+                        <?php
+                        if (empty($assignment)){
+                            echo "No assignment found";
+                        }else{
+                            echo "<li>";
+                            echo "<div class='assignments'>";
+                            echo "<h3>" . $assignment['assignmentName'] . "</h3>";
+                            echo "<p>" . $assignment['assignmentDescription'] . "</p>";
+                            echo "<p>Due Date: " . $assignment['dueDate'] . "</p>";
+                            echo "<p>Course: " . $assignment['courseID'] . "</p>";
+                            echo "<a href='assignmentSubmission.php?assignmentID=" . $assignment['assignmentID'] . "'>Submit Assignment</a>";
+                            echo "</div>";
+                            echo "</li>";
+                        }
+
+                        ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     <div class="footer">
+
     </div>
 </div>
 </body>

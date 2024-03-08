@@ -36,52 +36,12 @@ $courses = [];
 while($course = $result2->fetch_assoc()){
     $courses[] = $course;
 }
-function getCourseMaterials($course_id): array
+function getVideo($material_id): false|array|null
 {
     global $conn;
-    $materials = []; // Initialize an empty array to hold the course materials
-
-    // Prepare a statement to fetch all course materials for a given course
-    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
-    $stmt->bind_param("i", $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Fetch all course materials for the given course that are have a file Type of video
-    while ($material = $result->fetch_assoc()) {
-        if ($material['fileType'] == "video") {
-            $materials[] = $material;
-        }
-    }
-    return $materials;
-
-
+    return $conn->query("SELECT * FROM coursematerial WHERE materialID= $material_id")->fetch_assoc();
 }
 
-//g
-function getCourseVideos($course_id): array
-{
-    global $conn;
-    $videos = []; // Initialize an empty array to hold the course videos
-
-    // Prepare a statement to fetch all course materials for a given course
-    $stmt = $conn->prepare("SELECT * FROM coursematerial WHERE courseID = ?");
-    $stmt->bind_param("i", $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Fetch all course materials for the given course that are have a file Type of video
-    while ($material = $result->fetch_assoc()) {
-        if ($material['fileType'] == "video/mp4") {
-            $videos[] = $material;
-        }
-    }
-    return $videos;
-
-}
-$course_videos = getCourseVideos($course_id); // Fetch all course videos for the given course
-
-// fetch all the data  from the cour
 
 ?>
 
@@ -151,7 +111,7 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="logout.php">
+            <a href="../../LoginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
             </a>
@@ -163,15 +123,17 @@ $course_videos = getCourseVideos($course_id); // Fetch all course videos for the
                 <div class="Vid">
                     <video id="video" controls height="100%" width="100%">
                         <?php
-                            $videoPath = $_GET['$video'];
-
-                            echo "<source src='../Teacher/$videoPath' type='video/mp4'>"
+                        if (isset($material_id)){
+                            $video = getVideo(8);
+                            echo "<iframe src='../Teacher/".$video['material_path']."' frameborder='0' allowfullscreen></iframe> ";
+                        }else{
+                            echo"error loading video";
+                        }
                         ?>
                     </video>
                 </div>
+
                 <div class="videoInfo">
-                    <h3><?php echo htmlspecialchars($course['course_name']); ?></h3>
-                    <p><?php echo htmlspecialchars($course['course_description']); ?></p>
 
                 </div>
                 <div class="NoteTab">
