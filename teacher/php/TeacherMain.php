@@ -1,24 +1,41 @@
 <?php
-//session_start();
-//include "../../overall/config/connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: ../../LoginSystem/loginStudent.php");
-//    exit;
-//}
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
+session_start();
+include "../../overall/config/connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../../LoginSystem/loginStudent.php");
+    exit;
+}
 //
-//$stmt->execute();
-//$result = $stmt->get_result();
-//
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//}
-//?>
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+}
+// if the session id is not found in the instructor table redirect to the student dashboard
+$stmt = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+
+// Bind the parameters
+$stmt->bind_param("i", $_SESSION['id']);
+
+// Execute the statement
+$stmt->execute();
+
+// Get the results
+$result = $stmt->get_result();
+
+if ($result->num_rows == 0){
+    header("Location: ../../student/php/studentMain.php");
+    session_write_close();
+}
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -49,7 +66,7 @@
                 </button>
             </div>
             <div class="sidebar">
-                <a href="teacherMain.php" class="active">
+                <a href="TeacherMain.php" class="active">
                     <span class="material-symbols-outlined">home</span>
                     <h3>Home</h3>
                 </a>

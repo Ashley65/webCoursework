@@ -1,7 +1,7 @@
 <?php
 
 // define the base url
-const BASE_URL = "http://localhost:63342/webCoursework";
+const BASE_URL = "http://localhost:63342/ace-train/overall/";
 global $conn;
 include("../config/connection.php");
 
@@ -34,10 +34,29 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 $_SESSION['loggedin'] = true;
                 $_SESSION['id'] = $user['id'];
 
+                // if the user is a teacher check if their in instructor table and redirect to the teacher dashboard else redirect to the student dashboard
 
-                // Redirect to the dashboard
-                header("Location: ".BASE_URL. "Location: ../../student/php/studentMain.php");
-                session_write_close();
+                //prepare the SQL statement for checking if the user is a teacher
+                $stmt = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+
+                // Bind the parameters
+                $stmt->bind_param("i", $_SESSION['id']);
+
+                // Execute the statement
+                $stmt->execute();
+
+                // Get the results
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0){
+                    // Redirect to the dashboard
+                    header("Location: ../../teacher/php/TeacherMain.php");
+                    session_write_close();
+                } else {
+                    // Redirect to the dashboard
+                    header("Location: ../../student/php/studentMain.php");
+                    session_write_close();
+                }
             } else {
                 echo "<script>alert('Invalid password')</script>";
                 echo "<script>window.location.href='loginStudent.php'</script>";
