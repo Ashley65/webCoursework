@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignment Maker</title>
-    <script src="../../https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    <script src="../../overall/javaScript/script.js"></script>
     <script src="../../overall/javaScript/script.js"></script>
     <script src="../../overall/javaScript/theme.js"></script>
     <link rel="stylesheet" href="../../overall/styleSheets/dark-light.css">

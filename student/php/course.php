@@ -112,9 +112,6 @@ while($course = $result2->fetch_assoc()){
 
                 </div>
             </div>
-
-
-
         </div>
     </div>
      <div class="mainBody">

@@ -9,8 +9,10 @@
     "aside footer footer";
 }
 
-.Top-bar { grid-area: Top-bar; }
-
+.Top-bar {
+    grid-area: Top-bar;
+    margin-left: 304px;
+}
 .aside { grid-area: aside; }
 
 .mainBody {  display: grid;
@@ -60,7 +62,7 @@ body.dark {
 }
 
 h1 {
-    margin-top: -200px;
+    margin-top: -212px;
     text-align: center;
     padding: 20px 0;
     font-weight: 500;

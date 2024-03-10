@@ -75,7 +75,7 @@ body.dark .tabs {
     border-bottom: 1px solid #dcdcdc;
 }
 
-.newStudentBtn, .enrollmentBtn {
+.newStudentBtn, .enrollmentBtn, .newTeacherBtn {
     background-color: #3f3f3f;
     color: #ffffff;
     border-radius: 10px;
@@ -92,7 +92,7 @@ body.dark .tabs {
     transition: all ease 0.3s;
 }
 
-.newStudentBtn:hover, .enrollmentBtn:hover {
+.newStudentBtn:hover, .enrollmentBtn:hover, .newTeacherBtn:hover {
     background-color: #0c7db1;
     color: #ffffff;
     cursor: pointer;
@@ -111,7 +111,7 @@ body.dark .tabs {
     flex-direction: column;
 }
 
-.enrolmentForm input, .newStudentForm input{
+.enrolmentForm input, .newStudentForm input, .newTeacherForm input{
     outline: 0;
     width: 100%;
     padding: 10px 10px;
@@ -124,7 +124,7 @@ body.dark .tabs {
     margin-bottom: 10px;
 }
 
-body.dark .enrolmentForm input, body.dark .newStudentForm input{
+body.dark .enrolmentForm input, body.dark .newStudentForm input , body.dark .newTeacherForm input {
     color: #ffffff;
     background-color: #3f3f3f;
     border: 1px solid #3f3f3f;
@@ -133,12 +133,15 @@ body.dark .enrolmentForm input, body.dark .newStudentForm input{
 .enrolmentForm input:hover, .enrolmentForm input:focus,
 body.dark .enrolmentForm input:hover, body.dark .enrolmentForm input:focus,
 .newStudentForm input:hover, .newStudentForm input:focus,
-body.dark .newStudentForm input:hover, body.dark .newStudentForm input:focus {
+body.dark .newStudentForm input:hover, body.dark .newStudentForm input:focus,
+.newTeacherForm input:hover, .newTeacherForm input:focus,
+body.dark .newTeacherForm input:hover, body.dark .newTeacherForm input:focus {
     border-color: #0c7db1;
 }
 
 .enrolmentForm .submit, body.dark .enrolmentForm .submit,
-.newStudentForm .submit, body.dark .newStudentForm .submit {
+.newStudentForm .submit, body.dark .newStudentForm .submit,
+.newTeacherForm .submit, body.dark .newTeacherForm .submit{
     margin-top: 10px;
     background-color: #0c7db1;
     color: #ffffff;
@@ -147,12 +150,17 @@ body.dark .newStudentForm input:hover, body.dark .newStudentForm input:focus {
 }
 
 .enrolmentForm .submit:hover, body.dark .enrolmentForm .submit:hover,
-.newStudentForm .submit:hover, body.dark .newStudentForm .submit:hover {
+.newStudentForm .submit:hover, body.dark .newStudentForm .submit:hover,
+.newTeacherForm .submit:hover, body.dark .newTeacherForm .submit:hover {
     background-color: #9bcaee;
     color: #000000;
 }
 
 #enrolmentForm {
+    display: none;
+}
+
+#newTeacherForm {
     display: none;
 }
 

@@ -10,15 +10,14 @@ global $conn;
 <head>
     <meta charset="UTF-8">
     <title>Enrol</title>
-    <script src="../../https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../overall/javaScript/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    <script src="../../overall/javaScript/script.js"></script>
     <script src="../../overall/javaScript/theme.js"></script>
+    <script src="../javaScript/enrol.js"></script>
     <link rel="stylesheet" href="../../overall/styleSheets/dark-light.css">
     <link rel="stylesheet" href="../../overall/styleSheets/dashboard.css">
     <link rel="stylesheet" href="../../overall/styleSheets/sidebar.css">
     <link rel="stylesheet" href="../../overall/styleSheets/topBar.css">
-    <link rel="stylesheet" href="../styleSheets/enrolment.css">
-    <script src="../../js/enrolment.js"></script>
+    <link rel="stylesheet" href="../styleSheets/enrol.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 </head>
@@ -52,7 +51,7 @@ global $conn;
 
         </div>
         <div class="sidebar">
-            <a href="teacherMain.php">
+            <a href="TeacherMain.php">
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
@@ -93,10 +92,24 @@ global $conn;
     <div class="main">
         <div class="enrolmentFull">
             <div class="tabs">
-                <button class="newStudentBtn" onclick="openTab(event, 'newStudent')"><span class="material-symbols-outlined">person_add</span>
+                <button class="newStudentBtn"><span class="material-symbols-outlined">person_add</span>
                     New Student</button>
-                <button class="enrollmentBtn" onclick="openTab(event, 'enrollment')"><span class="material-symbols-outlined">school</span>
+                <button class="enrollmentBtn"><span class="material-symbols-outlined">school</span>
                     Enrol</button>
+                <button class="newTeacherBtn"><span class="material-symbols-outlined">person_add</span>
+                    New Teacher</button>
+            </div>
+            <div class="newTeacherForm" id="newTeacherForm">
+                <div class="enrolmentHeader">
+                    <h1>New Teacher</h1>
+                </div>
+                <form action="newTeacher.php" method="post">
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Username"><br>
+                    <label for="teacher_email">Email:</label><br>
+                    <input type="text" id="teacher_email" name="teacher_email" placeholder="Email"><br>
+                    <input class="submit" type="submit" value="Add New Teacher">
+                </form>
             </div>
             <div class="newStudentForm" id="newStudentForm">
                 <div class="enrolmentHeader">
