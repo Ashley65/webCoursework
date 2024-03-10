@@ -1,0 +1,192 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr 1fr;
+    grid-template-rows: 0.3fr 2.6fr 0.2fr;
+    gap : 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar footer footer";
+}
+
+.aside{
+    grid-area: sidebar;
+
+}
+.Top-bar {
+    grid-area: header;
+}
+.main {
+    display: grid;
+    grid-template-columns: 0.2fr 1.8fr 1.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 0.7fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". . . ."
+    ". courseCard courseCard ."
+    ". courseCard courseCard ."
+    ". . . .";
+    grid-area: main;
+}
+.courseCard {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr;
+    grid-template-rows: 0.2fr 2.4fr 0.4fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "courseNav courseNav courseNav"
+    "VideoMainBody VideoMainBody VideoMainBody"
+    "VideoMainBody VideoMainBody VideoMainBody";
+    grid-area: courseCard;
+}
+.VideoMainBody {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 0.7fr;
+    grid-template-rows: 1fr 1.4fr 0.6fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "Vid Vid NoteTab"
+    "Vid Vid NoteTab"
+    "videoInfo videoInfo NoteTab";
+    grid-area: VideoMainBody;
+}
+.Vid { grid-area: Vid; }
+.videoInfo { grid-area: videoInfo; }
+.NoteTab { grid-area: NoteTab; }
+.courseNav {
+    display: grid;
+    grid-template-columns: 0.4fr 0.4fr 0.4fr 1.3fr;
+    grid-template-rows: 1.3fr 0.7fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "Course-Video Course-file Course-Quiz ."
+    "Course-Video Course-file Course-Quiz ."
+    "Course-Video Course-file Course-Quiz .";
+    grid-area: courseNav;
+}
+.course-videos { grid-area: Course-Video; }
+.course-files { grid-area: Course-file; }
+.course-quiz { grid-area: Course-Quiz; }
+.footer { grid-area: footer; }
+
+
+#btn {
+    background-color: #3f3f3f;
+    color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    width: 130px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 0.3s;
+}
+
+#btn:hover {
+    background-color: #0c7db1;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.courseCard {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    width: 1000px;
+    margin-left: 50px;
+    margin-top: 7px;
+    transition: all ease 0.3s;
+}
+
+body.dark .courseCard {
+    background-color: #1e1e1e;
+}
+
+.courseNav {
+    padding-bottom: 10px;
+}
+
+.VideoMainBody {
+    margin-top: 20px;
+}
+
+.notes {
+    margin-left: 10px;
+}
+
+h3 {
+    margin-left: 10px;
+}
+
+.notes form input {
+    outline: 0;
+    width: 100%;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+body.dark .notes form input {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.notes form input:hover, .notes form input:focus,
+body.dark .notes form input:hover, body.dark .notes form input:focus {
+    border-color: #0c7db1;
+}
+
+.notes form textarea {
+    width: 100%;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    max-width: 206px;
+    min-width: 206px;
+    min-height: 46px;
+}
+
+body.dark .notes form textarea {
+    color: #ffffff;
+    background-color: #3f3f3f;
+    border: 1px solid #3f3f3f;
+}
+
+.notes form textarea:hover, .notes form textarea:focus,
+body.dark .notes form textarea:hover, body.dark .notes form textarea:focus {
+    border-color: #0c7db1;
+}
+
+.notes form button {
+    margin-top: 10px;
+    background-color: #0c7db1;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px;
+    transition: all ease 0.3s;
+}
+
+.notes form button:hover {
+    background-color: #9bcaee;
+    color: #000000;
+}

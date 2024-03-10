@@ -1,49 +1,47 @@
 <?php
-global $course_id;
-session_start();
-include "../Student/connection.php";
-global $conn;
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: /aceTrain/LoginSystem/loginStudent.php");
-
-    exit;
-}
-
-//get the user personal details
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-}else{
-    echo "No data found with id:" . $_SESSION['id'];
-
-}
-//get the course details from the courses table where the student is enrolled in
-$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-$stmt->bind_param("i", $_SESSION['id']);
-
-$stmt->execute();
-$result2 = $stmt->get_result();
-
-// Initialize an empty array to hold the courses
-$courses = [];
-
-// Fetch all courses the student is enrolled in along with the user details
-while($course = $result2->fetch_assoc()){
-    $courses[] = $course;
-}
-function getVideo($material_id): false|array|null
-{
-    global $conn;
-    return $conn->query("SELECT * FROM coursematerial WHERE materialID= $material_id")->fetch_assoc();
-}
-
-
-?>
+//global $course_id;
+//session_start();
+//include "../Student/connection.php";
+//global $conn;
+//
+//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//    header("location: /aceTrain/LoginSystem/loginStudent.php");
+//
+//    exit;
+//}
+//
+////get the user personal details
+//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result = $stmt->get_result();
+//if ($result->num_rows > 0) {
+//    $user = $result->fetch_assoc();
+//}else{
+//    echo "No data found with id:" . $_SESSION['id'];
+//
+//}
+////get the course details from the courses table where the student is enrolled in
+//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+//$stmt->bind_param("i", $_SESSION['id']);
+//
+//$stmt->execute();
+//$result2 = $stmt->get_result();
+//
+//// Initialize an empty array to hold the courses
+//$courses = [];
+//
+//// Fetch all courses the student is enrolled in along with the user details
+//while($course = $result2->fetch_assoc()){
+//    $courses[] = $course;
+//}
+//function getVideo($material_id): false|array|null
+//{
+//    global $conn;
+//    return $conn->query("SELECT * FROM coursematerial WHERE materialID= $material_id")->fetch_assoc();
+//}
+//?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -52,15 +50,15 @@ function getVideo($material_id): false|array|null
     <meta name="viewport" content="width= device-width, initial-scale=1.0">
     <title>Course</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../js/script.js"></script>
-    <script src="../../js/theme.js"></script>
-    <link rel="stylesheet" href="../../assets/dashboard_css/dark-light.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/Dashboard.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/sidebar.css">
-    <link rel="stylesheet" href="../../assets/dashboard_css/top-bar.css">
-    <link rel="stylesheet" href="../../assets/course_css/course.css">
-    <link rel="stylesheet" href="../../assets/gridlayout_css/gridLayoutForCourseVideo.css">
-    <script src="../../js/Profile.js"></script>
+    <script src="../../overall/javaScript/script.js"></script>
+    <script src="../../overall/javaScript/theme.js"></script>
+    <script src="../../overall/javaScript/profile.js"></script>
+    <link rel="stylesheet" href="../../overall/styleSheets/dark-light.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/dashboard.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/sidebar.css">
+    <link rel="stylesheet" href="../../overall/styleSheets/topBar.css">
+    <link rel="stylesheet" href="../styleSheets/course.css">
+    <link rel="stylesheet" href="../styleSheets/videoPlayer.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
@@ -94,23 +92,31 @@ function getVideo($material_id): false|array|null
             </button>
         </div>
         <div class="sidebar">
-            <a href="../Student/StudentMain.php" >
+            <a href="studentMain.php" >
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
-            <a href="../Student/course.php" class="active">
-                <span class="material-symbols-outlined">school</span>
-                <h3>Courses</h3>
-            </a>
-            <a href="../Student/calendar.php">
-                <span class="material-symbols-outlined">event</span>
-                <h3>Calendar</h3>
-            </a>
-            <a href="../Student/profile.php">
+            <a href="profile.php">
                 <span class="material-symbols-outlined">person</span>
                 <h3>Profile</h3>
             </a>
-            <a href="../../LoginSystem/logout.php">
+            <a href="course.php" class="active">
+                <span class="material-symbols-outlined">book</span>
+                <h3>Course</h3>
+            </a>
+            <a href="assignment.php">
+                <span class="material-symbols-outlined">assignment</span>
+                <h3>Assignment</h3>
+            </a>
+            <a href="timetable.php">
+                <span class="material-symbols-outlined">today</span>
+                <h3>Timetable</h3>
+            </a>
+            <a href="calendar.php">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Calendar</h3>
+            </a>
+            <a href="../../overall/loginSystem/logout.php">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
             </a>
@@ -164,19 +170,19 @@ function getVideo($material_id): false|array|null
             </div>
             <div class="courseNav">
                 <div class="course-videos">
-                    <button class="course-videos-btn tabsBtn" onclick="openPage(event, 'videos')" id="defaultTab">
+                    <button id="btn" class="course-videos-btn tabsBtn" onclick="openPage(event, 'videos')" id="defaultTab">
                         <span class="material-symbols-outlined">video_library</span>
                         <h3>Videos</h3>
                     </button>
                 </div>
                 <div class="course-files">
-                    <button class="course-materials-btn tabsBtn" onclick="openPage(event, 'materials')">
+                    <button id="btn" class="course-materials-btn tabsBtn" onclick="openPage(event, 'materials')">
                         <span class="material-symbols-outlined">book</span>
                         <h3>Materials</h3>
                     </button>
                 </div>
                 <div class="course-quiz">
-                    <button class="course-quiz-btn tabsBtn" onclick="openPage(event, 'quiz')">
+                    <button id="btn" class="course-quiz-btn tabsBtn" onclick="openPage(event, 'quiz')">
                         <span class="material-symbols-outlined">assignment</span>
                         <h3>Quiz</h3>
                     </button>
