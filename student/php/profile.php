@@ -167,7 +167,7 @@ if ($result->num_rows > 0) {
                                 <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
                             </div>
                             <div class="form-group">
-
+                                <input type="hidden" id="userID" value="<?php echo $_SESSION['id'] ?>">
                             </div>
 
 
@@ -194,6 +194,8 @@ if ($result->num_rows > 0) {
                                     <label for="confirmPassword">Confirm Password</label>
                                     <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
                                 </div>
+                                <div class="form-group">
+                                    <input type="hidden" id="userID" value="<?php echo $_SESSION['id'] ?>">
                             </div>
                             <div class="ActionButton">
                                 <button type="submit" class="btn btn-primary me-2" method="">Save changes</button>

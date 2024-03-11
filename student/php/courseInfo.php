@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Student/connection.php";
+include "connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("location: ../../LoginSystem/loginStudent.php");
@@ -205,7 +205,7 @@ $course_quiz = getCourseQuiz($course_id); // Fetch all course quizzes for the gi
                             echo "<li>";
                             echo "<a {$video['materialName']}'>{$video['materialName']}</a> - ";
                             // Load a page that will allow the user to play the video on the browser
-                            echo "<a href='../course/videoPlayer.php?video=" . urlencode($video['materialID']) . "'>Play</a>";
+                            echo "<a href=videoPlayer.php?video=" . urlencode($video['materialID']) . "'>Play</a>";
                             echo "</li>";
                         }
                         echo "</ul>";
@@ -222,30 +222,12 @@ $course_quiz = getCourseQuiz($course_id); // Fetch all course quizzes for the gi
                         foreach ($course_materials as $material) {
                             echo "<li>";
                             echo "<a {$material['materialName']}'>{$material['materialName']}</a> - ";
-                            echo "<a href='../Teacher/download.php?file=" . urlencode($material['material_path']) . "'>Download</a>";
+                            echo "<a href='../../teacher/php/download.php?file=" . urlencode($material['material_path']) . "'>Download</a>";
                             echo "</li>";
                         }
                         echo "</ul>";
                     } else {
                         echo "No course materials found for the given course ID: " . $course_id;
-                    }
-                    ?>
-                </div>
-
-                <div id="Quiz" class="tabcontent" style="display: none">
-                    <h3>Quiz</h3>
-                    <?php
-                    if (!empty($course_quiz)) {
-                        echo "<ul>";
-                        foreach ($course_quiz as $quiz) {
-                            echo "<li>";
-                            echo "<a {$quiz['quiz_name']}'>{$quiz['quiz_name']}</a> - ";
-                            echo "<a href='../course/quiz.php?quiz_id=" . urlencode($quiz['id']) . "'>Take Quiz</a>";
-                            echo "</li>";
-                        }
-                        echo "</ul>";
-                    } else {
-                        echo "No course quizzes found for the given course ID: " . $course_id;
                     }
                     ?>
                 </div>
@@ -264,12 +246,8 @@ $course_quiz = getCourseQuiz($course_id); // Fetch all course quizzes for the gi
                         Files
                     </button>
                 </div>
-                <div class="course-quiz">
-                    <button class="course-quiz-btn tabsBtn" onclick="openPage(event, 'Quiz')">
-                        <span class="material-symbols-outlined">quiz</span>
-                        Quiz
-                    </button>
-                </div>
+
+
             </div>
 
     </div>

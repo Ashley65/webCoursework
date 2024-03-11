@@ -1,35 +1,35 @@
 <?php
-//session_start();
-//include "../../overall/config/connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: ../../LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//// get the user address from the address table
-//$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $userAddress = $result->fetch_assoc();
-//}
-//?>
+session_start();
+include "../../overall/config/connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../../LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+// get the user address from the address table
+$stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $userAddress = $result->fetch_assoc();
+}
+?>
 
 <! DOCTYPE html>
 <html lang="en">

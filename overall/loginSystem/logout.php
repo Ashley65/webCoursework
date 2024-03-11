@@ -8,7 +8,7 @@ class logout
         session_start();
         session_unset();
         session_destroy();
-        header("location: /webCoursework/LoginSystem/loginStudent.php");
+        header("location: /aceTrain/LoginSystem/loginStudent.php");
     }
 
 

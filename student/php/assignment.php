@@ -1,40 +1,40 @@
 <?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//// get the assignment details from the assignment table where the student is enrolled in
-//$stmt2 = $conn->prepare("SELECT * FROM assignment LEFT JOIN assignmentUpload ON assignment.assignmentID = assignmentUpload.assignmentID WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?) AND (assignmentUpload.assignmentID IS NULL )");
-//$stmt2->bind_param("i", $_SESSION['id']);
-//
-//$stmt2->execute();
-//$result2 = $stmt2->get_result();
-//
-//// Initialize an empty array to hold the assignments
-//$assignments = [];
-//
-//// Fetch all assignments the student is enrolled in along with the user details
-//while($assignment = $result2->fetch_assoc()){
-//    $assignments[] = $assignment;
-//}
-//
-//?>
+session_start();
+include "connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+$stmt2 = $conn->prepare("SELECT assignment.* FROM assignment LEFT JOIN assignmentUpload ON assignment.assignmentID = assignmentUpload.assID WHERE assignment.courseID IN (SELECT course_id FROM enrollment WHERE student_id = ?) AND assignmentUpload.studentID IS NULL");
+$stmt2->bind_param("i", $_SESSION['id']);
+
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+
+// Initialize an empty array to hold the assignments
+$assignments = [];
+
+// Fetch all assignments the student is enrolled in along with the user details
+while($assignment = $result2->fetch_assoc()){
+    $assignments[] = $assignment;
+}
+
+?>
+
 
 <! DOCTYPE html>
 <html lang="en">
@@ -125,81 +125,29 @@
             </div>
             <div class="assignmentBody"
 
-                <ul>
-<!--                    --><?php //foreach ($assignments as $assignment): ?>
-                        <li>
-                            <div class="assignments">
-                                <h3><?php echo isset($assignment) ? $assignment['assignmentName']: 'Fake name '; ?></h3>
-                                <p><?php echo isset($assignment) ? $assignment['assignmentDescription']: 'dkfnffkksl'; ?></p>
-                                <p>Due Date: <?php echo  isset($assignment) ? $assignment['dueDate']: '1204:242:1' ; ?></p>
-                                <p>Course: <?php echo  isset($assignment) ? $assignment['courseID']: '12' ?></p>
+            <ul>
+                <?php foreach ($assignments as $assignment): ?>
+                    <?php
+                    if (empty($assignment)){
+                        echo "No assignment found";
+                    }else{
+                        echo "<li>";
+                        echo "<div class='assignments'>";
+                        echo "<h3>" . $assignment['assignmentName'] . "</h3>";
+                        echo "<p>" . $assignment['assignmentDescription'] . "</p>";
+                        echo "<p>Due Date: " . $assignment['dueDate'] . "</p>";
+                        echo "<p>Course: " . $assignment['courseID'] . "</p>";
+                        echo "<a href='assignmentSubmission.php?assignmentID=" . $assignment['assignmentID'] . "'>Submit Assignment</a>";
+                        echo "</div>";
+                        echo "</li>";
+                    }
 
-                                <a href="assignmentSubmission.php?assignmentID=<?php echo isset($assignment) ?  $assignment['assignmentID']: '12'; ?>">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 2</h3>
-                                <p>Assignment 2 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="../../assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 3</h3>
-                                <p>Assignment 3 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 4</h3>
-                                <p>Assignment 4 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 5</h3>
-                                <p>Assignment 5 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 6</h3>
-                                <p>Assignment 6 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="assignments">
-                                <h3>Assignment 7</h3>
-                                <p>Assignment 7 Description</p>
-                                <p>Due Date: 12/12/2021</p>
-                                <p>Course: 12</p>
-                                <a href="assignmentSubmission.php">Submit Assignment</a>
-                            </div>
-                        </li>
-
-
-<!--                    --><?php //endforeach; ?>
-                </ul>
-            </div>
+                    ?>
+                <?php endforeach; ?>
+            </ul>
         </div>
-    <div class="footer">
-
-    </div>
+</div>
+<div class="footer">
 </div>
 </body>
 </html>
