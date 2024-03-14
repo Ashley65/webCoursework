@@ -13,7 +13,7 @@
 <body>
 <form action="Validate.php" method="post">
     <div class="loginBox">
-        <h1>Student Login</h1>
+        <h1>Login</h1>
         <div class="textbox">
             <i class="fas fa-user"></i>
             <label>

@@ -98,8 +98,11 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
         </div>
+        <div class="header">
+            <h1>Welcome to Ace Training</h1>
+        </div>
         <div id="aboutBox">
-            <h1>About Ace Training</h1>
+            <h1>About</h1>
             <h2>Ace Training is an educational learning environment which
                 aims to improve your studies by providing a user-friendly
                 platform for students to access their course materials,

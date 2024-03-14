@@ -15,7 +15,7 @@
 
 <form action="RSValidate.php" method="post" AUTOCOMPLETE="off" >
     <div class="loginBox">
-        <h1>Student Signup</h1>
+        <h1>Signup</h1>
         <div class="textbox">
             <i class="fas fa-user"></i>
             <label>
