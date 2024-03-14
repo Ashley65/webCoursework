@@ -84,7 +84,7 @@ if ($result1->num_rows == 0){
 
             </div>
             <div class="sidebar">
-                <a href="teacherMain.php">
+                <a href="TeacherMain.php">
                     <span class="material-symbols-outlined">home</span>
                     <h3>Home</h3>
                 </a>

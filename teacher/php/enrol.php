@@ -1,9 +1,41 @@
 <?php
+session_start();
 include "../../overall/config/connection.php";
 global $conn;
 
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: ../../overall/LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+}
+// if the session id is not found in the instructor table redirect to the student dashboard
+$stmt1 = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+// Bind the parameters
+$stmt1->bind_param("i", $_SESSION['id']);
+// Execute the statement
+$stmt1->execute();
+// Get the results
+$result1 = $stmt1->get_result();
+if ($result1->num_rows == 0){
+    header("Location: ../../student/php/studentMain.php");
+    session_write_close();
+}
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

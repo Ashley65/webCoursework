@@ -3,7 +3,8 @@ session_start();
 include "../../overall/config/connection.php";
 global $conn;
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: ../../LoginSystem/loginStudent.php");
+    header("location: ../../overall/LoginSystem/loginStudent.php");
+
     exit;
 }
 //
@@ -35,6 +36,20 @@ if ($result->num_rows == 0){
     header("Location: ../../student/php/studentMain.php");
     session_write_close();
 }
+// if the session id is not found in the instructor table redirect to the student dashboard
+$stmt1 = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+// Bind the parameters
+$stmt1->bind_param("i", $_SESSION['id']);
+// Execute the statement
+$stmt1->execute();
+// Get the results
+$result1 = $stmt1->get_result();
+if ($result1->num_rows == 0){
+    header("Location: ../../student/php/studentMain.php");
+    session_write_close();
+}
+
+
 ?>
 
 <! DOCTYPE html>

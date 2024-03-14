@@ -1,28 +1,60 @@
 <?php
-//session_start();
-//include "connection.php";
-//global $conn;
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-//
-//
-//
-//?>
+session_start();
+include "../../overall/config/connection.php";
+global $conn;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/overall/LoginSystem/loginStudent.php");
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+
+
+// gate the student list from the database and display it in the table
+$stmt2 = $conn->prepare("SELECT * FROM users ");
+// Execute the statement
+$stmt2 -> execute();
+// Get the results
+$result2 = $stmt2 -> get_result();
+
+if ($result2->num_rows > 0){
+    $students = $result2->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+// if the session id is not found in the instructor table redirect to the student dashboard
+$stmt1 = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+// Bind the parameters
+$stmt1->bind_param("i", $_SESSION['id']);
+// Execute the statement
+$stmt1->execute();
+// Get the results
+$result1 = $stmt1->get_result();
+if ($result1->num_rows == 0){
+    header("Location: ../../student/php/studentMain.php");
+    session_write_close();
+}
+
+
+// Get users details from the users table
+
+
+
+
+
+?>
 <! DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +84,7 @@
             </button>
         </div>
         <div class="sidebar">
-            <a href="teacherMain.php">
+            <a href="TeacherMain.php">
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
@@ -114,115 +146,69 @@
             <div class="listHeader">
                 <h1>Student List</h1>
             </div>
+
             <div class="list">
-                <div class="student-item">
-                    <span class="student-id">0001</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">1st year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0002</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">2nd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
-                <div class="student-item">
-                    <span class="student-id">0003</span>
-                    <span class="student-name">John Smith</span>
-                    <span class="student-course">Computer Science</span>
-                    <span class="student-year">3rd Year</span>
-                </div>
+                <div class="list">
+                    <div class="student-item">
+                        <span class="student-id">0001</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">1st year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0002</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">2nd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
+                    <div class="student-item">
+                        <span class="student-id">0003</span>
+                        <span class="student-name">John Smith</span>
+                        <span class="student-course">Computer Science</span>
+                        <span class="student-year">3rd Year</span>
+                    </div>
             </div>
         </div>
     </div>

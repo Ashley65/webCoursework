@@ -1,47 +1,47 @@
 <?php
-//global $course_id;
-//session_start();
-//include "../Student/connection.php";
-//global $conn;
-//
-//if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//    header("location: /aceTrain/LoginSystem/loginStudent.php");
-//
-//    exit;
-//}
-//
-////get the user personal details
-//$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result = $stmt->get_result();
-//if ($result->num_rows > 0) {
-//    $user = $result->fetch_assoc();
-//}else{
-//    echo "No data found with id:" . $_SESSION['id'];
-//
-//}
-////get the course details from the courses table where the student is enrolled in
-//$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
-//$stmt->bind_param("i", $_SESSION['id']);
-//
-//$stmt->execute();
-//$result2 = $stmt->get_result();
-//
-//// Initialize an empty array to hold the courses
-//$courses = [];
-//
-//// Fetch all courses the student is enrolled in along with the user details
-//while($course = $result2->fetch_assoc()){
-//    $courses[] = $course;
-//}
-//function getVideo($material_id): false|array|null
-//{
-//    global $conn;
-//    return $conn->query("SELECT * FROM coursematerial WHERE materialID= $material_id")->fetch_assoc();
-//}
-//?>
+global $course_id;
+session_start();
+include "connection.php";
+global $conn;
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: /aceTrain/LoginSystem/loginStudent.php");
+
+    exit;
+}
+
+//get the user personal details
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+}else{
+    echo "No data found with id:" . $_SESSION['id'];
+
+}
+//get the course details from the courses table where the student is enrolled in
+$stmt = $conn->prepare("SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM enrollment WHERE student_id = ?)");
+$stmt->bind_param("i", $_SESSION['id']);
+
+$stmt->execute();
+$result2 = $stmt->get_result();
+
+// Initialize an empty array to hold the courses
+$courses = [];
+
+// Fetch all courses the student is enrolled in along with the user details
+while($course = $result2->fetch_assoc()){
+    $courses[] = $course;
+}
+function getVideo($material_id): false|array|null
+{
+    global $conn;
+    return $conn->query("SELECT * FROM coursematerial WHERE materialID= $material_id")->fetch_assoc();
+}
+?>
 
 <! DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,6 @@
 <div class="container">
     <div class="Top-bar">
         <div class="nav">
-            <h2><span class="blue">Student</span> Dashboard</h2>
             <button  id="toggleBtn">
                 <span class="material-symbols-outlined">menu</span>
             </button>
@@ -179,12 +178,6 @@
                     <button id="btn" class="course-materials-btn tabsBtn" onclick="openPage(event, 'materials')">
                         <span class="material-symbols-outlined">book</span>
                         <h3>Materials</h3>
-                    </button>
-                </div>
-                <div class="course-quiz">
-                    <button id="btn" class="course-quiz-btn tabsBtn" onclick="openPage(event, 'quiz')">
-                        <span class="material-symbols-outlined">assignment</span>
-                        <h3>Quiz</h3>
                     </button>
                 </div>
             </div>

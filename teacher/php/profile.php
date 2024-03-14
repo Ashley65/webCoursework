@@ -19,7 +19,20 @@ if ($result->num_rows > 0) {
 }else{
     echo "No data found with id:" . $_SESSION['id'];
 
+}// if the session id is not found in the instructor table redirect to the student dashboard
+$stmt1 = $conn->prepare("SELECT * FROM instructor WHERE userID = ?");
+// Bind the parameters
+$stmt1->bind_param("i", $_SESSION['id']);
+// Execute the statement
+$stmt1->execute();
+// Get the results
+$result1 = $stmt1->get_result();
+if ($result1->num_rows == 0){
+    header("Location: ../../student/php/studentMain.php");
+    session_write_close();
 }
+
+
 // get the user address from the address table
 $stmt = $conn->prepare("SELECT * FROM useraddress WHERE userID = ?");
 $stmt->bind_param("i", $_SESSION['id']);
@@ -77,7 +90,7 @@ if ($result->num_rows > 0) {
             </button>
         </div>
         <div class="sidebar">
-            <a href="teacherMain.php">
+            <a href="TeacherMain.php">
                 <span class="material-symbols-outlined">home</span>
                 <h3>Home</h3>
             </a>
